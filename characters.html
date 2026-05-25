@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lord Jim — Characters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;700;900&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--parchment:#f0e9d6;--gold:#c9933a;--gold-light:#e8b85a;--gold-dim:#7a5820;--fog:#8a9ba8;--char:#1a1612;--ink:#13110e;--serif:'Cormorant Garamond',Georgia,serif;--display:'Cinzel',serif;--fell:'IM Fell English',serif}
+html{scroll-behavior:smooth}
+body{background:var(--char);color:var(--parchment);font-family:var(--serif);font-size:18px;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,8,6,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,147,58,.15);padding:.8rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-family:var(--display);font-size:.85rem;letter-spacing:.25em;color:var(--gold);text-decoration:none;text-transform:uppercase}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--display);font-size:.65rem;letter-spacing:.2em;color:var(--fog);text-decoration:none;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--gold-light)}
+.nav-links a.active{color:var(--gold)}
+
+/* HERO */
+.page-hero{position:relative;padding:7rem 2rem 5rem;text-align:center;overflow:hidden;background:linear-gradient(180deg,#060504 0%,#0d1520 50%,#1a1612 100%)}
+.star-field{position:absolute;inset:0;z-index:0}
+.star{position:absolute;background:var(--parchment);border-radius:50%;animation:twinkle var(--d,4s) ease-in-out infinite;animation-delay:var(--delay,0s);opacity:0}
+@keyframes twinkle{0%,100%{opacity:0}50%{opacity:var(--op,.6)}}
+.page-hero-content{position:relative;z-index:1}
+.hero-eyebrow{font-family:var(--display);font-size:.65rem;letter-spacing:.5em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem;opacity:.8}
+.page-hero h1{font-family:var(--display);font-size:clamp(3rem,9vw,7rem);font-weight:900;letter-spacing:.1em;color:var(--parchment);text-shadow:0 0 60px rgba(201,147,58,.25);margin-bottom:1.5rem}
+.page-hero-sub{font-family:var(--fell);font-style:italic;font-size:clamp(1rem,2vw,1.4rem);color:var(--fog);max-width:550px;margin:0 auto}
+.hero-rule{width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:2rem auto 0}
+
+/* NAUTICAL DIVIDERS */
+.nautical-divider{max-width:960px;margin:0 auto;padding:1rem 2rem;opacity:.9}
+.nautical-divider svg{display:block}
+.anchor-img-divider{padding:.5rem 2rem}
+.anchor-rules-wrap{display:flex;align-items:center;max-width:960px;margin:0 auto}
+.anchor-img{width:160px;height:auto;flex-shrink:0;display:block;filter:drop-shadow(0 0 18px rgba(201,147,58,.25))}
+
+/* SECTION LABELS */
+.section-label-wrap{max-width:960px;margin:0 auto;padding:4rem 2rem 1.5rem}
+.section-label{font-family:var(--display);font-size:.65rem;letter-spacing:.5em;color:var(--gold);text-transform:uppercase;opacity:.8}
+
+/* JIM — FEATURED CARD */
+.jim-card{max-width:960px;margin:0 auto 2rem;padding:0 2rem}
+.jim-inner{background:linear-gradient(135deg,rgba(20,15,8,.9) 0%,rgba(30,20,10,.9) 100%);border:1px solid rgba(201,147,58,.3);padding:3rem;display:grid;grid-template-columns:1fr 2fr;gap:3rem;position:relative;overflow:hidden}
+.jim-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.jim-role{font-family:var(--display);font-size:.6rem;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:.75rem;opacity:.8}
+.jim-name{font-family:var(--display);font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;color:var(--parchment);line-height:.95;margin-bottom:1.5rem}
+.jim-arc{font-family:var(--fell);font-style:italic;font-size:1.1rem;line-height:1.85;color:rgba(240,233,214,.8);margin-bottom:1.5rem}
+.jim-songs-label{font-family:var(--display);font-size:.55rem;letter-spacing:.3em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:.75rem}
+.jim-songs{display:flex;flex-wrap:wrap;gap:.5rem}
+.song-pill{font-family:var(--display);font-size:.55rem;letter-spacing:.1em;color:var(--fog);border:1px solid rgba(201,147,58,.2);padding:.3rem .75rem;text-transform:uppercase}
+.jim-quote{font-family:var(--fell);font-style:italic;font-size:1.3rem;line-height:1.6;color:var(--gold-light);border-left:2px solid var(--gold);padding:1rem 0 1rem 1.5rem;margin-top:2rem;opacity:.9}
+.jim-stat{margin-bottom:1.5rem}
+.jim-stat-label{font-family:var(--display);font-size:.55rem;letter-spacing:.3em;color:var(--gold-dim);text-transform:uppercase;display:block;margin-bottom:.4rem}
+.jim-stat-value{font-family:var(--serif);font-size:1rem;color:rgba(240,233,214,.75);line-height:1.6}
+
+/* PRINCIPALS GRID */
+.principals-grid{max-width:960px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-bottom:2rem}
+.char-card{border:1px solid rgba(201,147,58,.12);background:rgba(15,12,9,.7);padding:2rem;position:relative;transition:border-color .3s,transform .2s}
+.char-card:hover{border-color:rgba(201,147,58,.3);transform:translateY(-2px)}
+.char-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.char-card.blue::before{background:linear-gradient(90deg,transparent,rgba(40,90,140,.8),transparent)}
+.char-card.green::before{background:linear-gradient(90deg,transparent,rgba(40,100,60,.8),transparent)}
+.char-card.red::before{background:linear-gradient(90deg,transparent,rgba(140,40,40,.8),transparent)}
+.char-card.amber::before{background:linear-gradient(90deg,transparent,rgba(180,120,30,.8),transparent)}
+.char-card.teal::before{background:linear-gradient(90deg,transparent,rgba(30,110,110,.8),transparent)}
+.char-card.purple::before{background:linear-gradient(90deg,transparent,rgba(90,40,120,.8),transparent)}
+.char-card.rust::before{background:linear-gradient(90deg,transparent,rgba(160,70,20,.8),transparent)}
+.char-card.grey::before{background:linear-gradient(90deg,transparent,rgba(100,100,100,.6),transparent)}
+.char-role{font-family:var(--display);font-size:.55rem;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:.5rem;opacity:.75}
+.char-name{font-family:var(--display);font-size:1.4rem;font-weight:700;color:var(--parchment);margin-bottom:.4rem;letter-spacing:.05em}
+.char-epithet{font-family:var(--fell);font-style:italic;font-size:.95rem;color:var(--fog);margin-bottom:1.2rem}
+.char-desc{font-family:var(--serif);font-size:.95rem;line-height:1.8;color:rgba(240,233,214,.75);margin-bottom:1.2rem}
+.char-songs{font-family:var(--display);font-size:.55rem;letter-spacing:.15em;color:var(--gold-dim);text-transform:uppercase}
+.char-quote{font-family:var(--fell);font-style:italic;font-size:.95rem;color:var(--gold-light);opacity:.8;border-top:1px solid rgba(201,147,58,.1);padding-top:1rem;margin-top:1rem;line-height:1.6}
+
+/* SUPPORTING */
+.supporting-grid{max-width:960px;margin:0 auto;padding:0 2rem 4rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.support-card{border:1px solid rgba(201,147,58,.08);background:rgba(12,10,7,.6);padding:1.5rem}
+.support-name{font-family:var(--display);font-size:1rem;font-weight:700;color:var(--parchment);margin-bottom:.3rem;letter-spacing:.05em}
+.support-epithet{font-family:var(--fell);font-style:italic;font-size:.85rem;color:var(--fog);margin-bottom:.8rem}
+.support-desc{font-family:var(--serif);font-size:.88rem;line-height:1.7;color:rgba(240,233,214,.65)}
+
+/* RELATIONSHIP MAP */
+.rel-section{max-width:960px;margin:0 auto;padding:0 2rem 6rem}
+.rel-title{font-family:var(--display);font-size:clamp(1.5rem,4vw,2.5rem);font-weight:700;color:var(--parchment);margin-bottom:2rem}
+.rel-grid{display:grid;gap:.75rem}
+.rel-row{display:grid;grid-template-columns:140px 1fr;gap:1.5rem;align-items:start;padding:.75rem 0;border-bottom:1px solid rgba(201,147,58,.06)}
+.rel-names{font-family:var(--display);font-size:.7rem;letter-spacing:.08em;color:var(--gold-light);text-transform:uppercase;line-height:1.6}
+.rel-arrow{font-family:var(--display);font-size:.6rem;letter-spacing:.1em;color:var(--gold-dim);display:block;margin-top:.2rem}
+.rel-desc{font-family:var(--fell);font-style:italic;font-size:1rem;color:rgba(240,233,214,.7);line-height:1.7}
+
+footer{border-top:1px solid rgba(201,147,58,.1);padding:4rem 2rem;text-align:center}
+.footer-title{font-family:var(--display);font-size:1.5rem;font-weight:700;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem}
+.footer-text{font-family:var(--fell);font-style:italic;font-size:.95rem;color:var(--fog);max-width:400px;margin:0 auto 2rem}
+.footer-rule{width:60px;height:1px;background:var(--gold-dim);margin:2rem auto}
+.footer-credit{font-family:var(--display);font-size:.6rem;letter-spacing:.2em;color:var(--gold-dim);text-transform:uppercase}
+
+@media(max-width:640px){.nav-links{display:none}.jim-inner{grid-template-columns:1fr}.principals-grid{grid-template-columns:1fr}.supporting-grid{grid-template-columns:1fr}.rel-row{grid-template-columns:1fr;gap:.4rem}.jim-card,.principals-grid,.supporting-grid,.rel-section,.section-label-wrap{padding-left:1rem;padding-right:1rem}.jim-inner{padding:1.5rem}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<a href="index.html" class="nav-brand">Lord Jim</a>
+<ul class="nav-links">
+  <li><a href="index.html#story">The Story</a></li>
+  <li><a href="index.html#act-one">Act I</a></li>
+  <li><a href="index.html#act-two">Act II</a></li>
+  <li><a href="index.html#tracklist">Tracklist</a></li>
+  <li><a href="characters.html" class="active">Characters</a></li>
+</ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+<div class="star-field" id="stars"></div>
+<div class="page-hero-content">
+  <p class="hero-eyebrow">Lord Jim — A Rock Opera</p>
+  <h1>The Cast</h1>
+  <p class="page-hero-sub">The sailors, the judges, the elders, the lovers — and the men who cannot escape themselves</p>
+  <div class="hero-rule"></div>
+</div>
+</div>
+
+<!-- ANCHOR DIVIDER -->
+<div class="nautical-divider anchor-img-divider" style="margin-top:1rem;">
+<div class="anchor-rules-wrap">
+  <span class="anchor-rule-line" style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,147,58,.5));display:block;"></span>
+  <img src="anchor.jpeg" alt="Anchor" class="anchor-img"/>
+  <span class="anchor-rule-line" style="flex:1;height:1px;background:linear-gradient(270deg,transparent,rgba(201,147,58,.5));display:block;"></span>
+</div>
+</div>
+
+<!-- JIM FEATURED -->
+<div class="section-label-wrap">
+  <span class="section-label">Protagonist</span>
+</div>
+<div class="jim-card">
+<div class="jim-inner">
+  <div>
+    <span class="jim-stat-label">Full Arc</span>
+    <div class="jim-stat-value">Idealistic sailor → coward → refugee → Lord Jim → martyr</div>
+    <div style="height:1.5rem;"></div>
+    <span class="jim-stat-label">Defining Trait</span>
+    <div class="jim-stat-value">A romantic who needs his self-image to match his actions — unable to live in the gap between the two</div>
+    <div style="height:1.5rem;"></div>
+    <span class="jim-stat-label">Fatal Flaw</span>
+    <div class="jim-stat-value">Sees potential for redemption in everyone — including those who would exploit it</div>
+    <div style="height:1.5rem;"></div>
+    <div class="jim-songs-label">Featured In</div>
+    <div class="jim-songs">
+      <span class="song-pill">Sailor's Overture</span>
+      <span class="song-pill">Abandon Ship</span>
+      <span class="song-pill">Trial by the Sea</span>
+      <span class="song-pill">Running</span>
+      <span class="song-pill">Lord Jim</span>
+      <span class="song-pill">Jewel's Plea</span>
+      <span class="song-pill">The Walk</span>
+    </div>
+  </div>
+  <div>
+    <p class="jim-role">Protagonist</p>
+    <h2 class="jim-name">Jim</h2>
+    <div class="jim-arc">
+      <p>A young English sailor with an unshakeable image of himself as a hero. When the Patna appears to be sinking with 800 pilgrims aboard, Jim freezes — then jumps into the lifeboat with the crew. The ship doesn't sink. His failure becomes public, permanent, and defining.</p>
+      <p style="margin-top:1rem;">Jim doesn't flee from justice. He stays, testifies, and accepts the stripping of his maritime certificates with dignity. But he can't bear being recognized — can't stand the whispered word <em>coward</em> following him from port to port across Southeast Asia.</p>
+      <p style="margin-top:1rem;">In Patusan, where no one knows the Patna, Jim becomes who he always believed he was — protector, tactician, beloved lord. His tragedy is that the very quality that makes him a great leader — his belief in everyone's capacity for redemption — makes him fatally naive when Gentleman Brown exploits it.</p>
+    </div>
+    <div class="jim-quote">"I'd rather die as Lord Jim, who stood and faced his end, than live in shame forever, running, broken, never whole again."</div>
+  </div>
+</div>
+</div>
+
+<!-- PRINCIPALS LABEL -->
+<div class="section-label-wrap" style="padding-top:3rem;">
+  <span class="section-label">Principal Characters</span>
+</div>
+
+<div class="principals-grid">
+
+  <div class="char-card blue">
+    <p class="char-role">Narrator · Mentor</p>
+    <h3 class="char-name">Marlow</h3>
+    <p class="char-epithet">The sailor who sees what others miss</p>
+    <p class="char-desc">An experienced sea captain who takes Jim under his wing after the trial. Marlow is the opera's narrator — a moral witness who tells the story with compassion and doubt in equal measure. He sees Jim's potential when no one else does, arranges the Patusan exile, and returns to witness the transformation. The finale is his meditation on whether Jim's death was redemption or surrender.</p>
+    <p class="char-songs">One of Us · Marlow's Return · Finale</p>
+    <p class="char-quote">"He was one of us — a sailor born with honor in his bones."</p>
+  </div>
+
+  <div class="char-card amber">
+    <p class="char-role">The Philosopher</p>
+    <h3 class="char-name">Stein</h3>
+    <p class="char-epithet">The butterfly collector who reads men like specimens</p>
+    <p class="char-desc">An elderly German merchant, butterfly collector, and former adventurer. Stein's diagnosis of Jim — delivered through the lens of his specimens — is the opera's philosophical core: Jim is a romantic made for the light, and he must immerse himself completely in the "destructive element" of his own nature. He provides the ring that opens Patusan, and his wisdom echoes through the finale.</p>
+    <p class="char-songs">Stein's Wisdom</p>
+    <p class="char-quote">"In the destructive element immerse — this is the only way."</p>
+  </div>
+
+  <div class="char-card teal">
+    <p class="char-role">The Beloved</p>
+    <h3 class="char-name">Jewel</h3>
+    <p class="char-epithet">The woman who guards the door Jim won't lock</p>
+    <p class="char-desc">Jewel is Stein's stepdaughter's child, raised in Patusan by the resentful Cornelius after her mother's death. She is fiercely intelligent, deeply pragmatic, and armed. She loves Jim with a ferocity that frightens her — and she sees clearly what Jim refuses to believe: that some men cannot be trusted. Her warning about Brown goes unheeded. Her love dies with Jim's final breath.</p>
+    <p class="char-songs">Jewel's Story · Lord Jim · Jewel's Plea</p>
+    <p class="char-quote">"Choose your honor, choose your death. My love dies with your final breath."</p>
+  </div>
+
+  <div class="char-card green">
+    <p class="char-role">Elder · Father</p>
+    <h3 class="char-name">Doramin</h3>
+    <p class="char-epithet">The chief who gives Jim a home — and takes his life</p>
+    <p class="char-desc">The most powerful Bugis elder in Patusan — massive, dignified, and deeply just. He welcomes Jim on Stein's ring and comes to love him like a son. When his actual son Dain Waris is killed by Brown's ambush, Doramin's grief becomes duty. He kills Jim not from hatred but from the unbearable weight of a chief's obligation. The opera's most heartbreaking character.</p>
+    <p class="char-songs">Patusan · Tyrant's End · Lord Jim · The Council · Doramin's Grief</p>
+    <p class="char-quote">"Sleep now, Dain, beneath the trees. I will complete the cycle though it brings me to my knees."</p>
+  </div>
+
+  <div class="char-card green">
+    <p class="char-role">Brother · Heir</p>
+    <h3 class="char-name">Dain Waris</h3>
+    <p class="char-epithet">Jim's closest friend — and the cost of his mercy</p>
+    <p class="char-desc">Doramin's son and heir — brilliant, warm, and brave. Dain becomes Jim's closest companion and military ally, the man who climbs the ravine at Jim's side to take Sherif Ali's fortress. He trusts Jim's judgment completely. That trust gets him killed: Jim's safe-passage ring is on Dain's finger when Brown's men ambush his camp. His death is the catastrophe that makes everything inevitable.</p>
+    <p class="char-songs">Tyrant's End · The Council · The Blood Runs Red</p>
+    <p class="char-quote">"He has given us back our pride. He has given us back our home."</p>
+  </div>
+
+  <div class="char-card red">
+    <p class="char-role">Antagonist · Pirate</p>
+    <h3 class="char-name">Gentleman Brown</h3>
+    <p class="char-epithet">The man who knows exactly which wounds to press</p>
+    <p class="char-desc">A pirate captain of frightening intelligence and no moral code whatsoever. Brown arrives expecting easy plunder and finds himself trapped. Rather than fight, he studies Jim — and within minutes discovers the Patna wound beneath the confident exterior. His manipulation is surgical: he creates a false equivalence between Jim's moment of panic and his own career of violence, then watches Jim's guilt do the rest of the work.</p>
+    <p class="char-songs">Gentleman Brown · The Confrontation</p>
+    <p class="char-quote">"We're both men who failed when tested once before — that's why we're here, that's what we're fighting for."</p>
+  </div>
+
+  <div class="char-card rust">
+    <p class="char-role">Enabler · Traitor</p>
+    <h3 class="char-name">Cornelius</h3>
+    <p class="char-epithet">The bitter man in the shadows</p>
+    <p class="char-desc">Stein's failed Patusan trade agent — Jewel's stepfather and the man who destroyed her mother. Cornelius is petty, resentful, and dangerous precisely because he is overlooked. He poisons Brown's mind against Jim, supplies the key intelligence about Jim's vulnerability, and guides the pirates through the hidden creek that leads to Dain's ambush. He is the knife in the dark that Jim never saw coming — because Jim refused to see it.</p>
+    <p class="char-songs">Jewel's Story · Gentleman Brown · The Confrontation</p>
+    <p class="char-quote">"He's just a shadow of a man — soft-hearted, fickle, and naive."</p>
+  </div>
+
+  <div class="char-card purple">
+    <p class="char-role">Judge · Mirror</p>
+    <h3 class="char-name">Captain Brierly</h3>
+    <p class="char-epithet">The decorated captain who couldn't answer his own question</p>
+    <p class="char-desc">Brierly sits on Jim's maritime inquiry as a celebrated judge — twenty years without a blemish. But watching Jim's testimony, he finds himself unable to answer the question that destroys him: Would I have jumped too? He cannot prove that he wouldn't. Unable to live with that uncertainty, he steps into the ocean days after the trial. A one-song character who illuminates the opera's central theme: the thin, terrifying line between hero and coward.</p>
+    <p class="char-songs">Brierly's Ghost</p>
+    <p class="char-quote">"They'll say my death was a mystery — forever haunted by Brierly's ghost."</p>
+  </div>
+
+</div>
+
+<!-- ROPE & HELM DIVIDER — between principals and supporting -->
+<div class="nautical-divider" style="margin-top:1rem;">
+<svg width="100%" viewBox="0 0 680 120" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Rope and helm wheel divider</title>
+<g transform="translate(340,60)">
+  <line x1="-300" y1="0" x2="-240" y2="0" stroke="#c9933a" stroke-width="0.8" opacity="0.5"/>
+  <line x1="240" y1="0" x2="300" y2="0" stroke="#c9933a" stroke-width="0.8" opacity="0.5"/>
+  <ellipse cx="-288" cy="0" rx="7" ry="5" fill="none" stroke="#c9933a" stroke-width="1.8"/>
+  <path d="M-267,0 C-257,-9 -247,-9 -237,0 C-227,9 -217,9 -207,0 C-197,-9 -187,-9 -177,0 C-167,9 -157,9 -147,0 C-137,-9 -127,-9 -117,0 C-107,9 -97,9 -87,0" fill="none" stroke="#c9933a" stroke-width="2.2" opacity="0.9"/>
+  <path d="M-267,0 C-257,7 -247,9 -237,5 C-227,-3 -217,-9 -207,-5 C-197,3 -187,9 -177,5 C-167,-3 -157,-9 -147,-5 C-137,3 -127,9 -117,5 C-107,-3 -97,-9 -87,-5" fill="none" stroke="#e8b85a" stroke-width="1.2" opacity="0.45"/>
+  <circle cx="-80" cy="0" r="9" fill="none" stroke="#c9933a" stroke-width="2"/>
+  <circle cx="-80" cy="0" r="4" fill="#c9933a" opacity="0.6"/>
+  <ellipse cx="288" cy="0" rx="7" ry="5" fill="none" stroke="#c9933a" stroke-width="1.8"/>
+  <path d="M267,0 C257,-9 247,-9 237,0 C227,9 217,9 207,0 C197,-9 187,-9 177,0 C167,9 157,9 147,0 C137,-9 127,-9 117,0 C107,9 97,9 87,0" fill="none" stroke="#c9933a" stroke-width="2.2" opacity="0.9"/>
+  <path d="M267,0 C257,7 247,9 237,5 C227,-3 217,-9 207,-5 C197,3 187,9 177,5 C167,-3 157,-9 147,-5 C137,3 127,9 117,5 C107,-3 97,-9 87,-5" fill="none" stroke="#e8b85a" stroke-width="1.2" opacity="0.45"/>
+  <circle cx="80" cy="0" r="9" fill="none" stroke="#c9933a" stroke-width="2"/>
+  <circle cx="80" cy="0" r="4" fill="#c9933a" opacity="0.6"/>
+  <circle cx="0" cy="0" r="40" fill="none" stroke="#c9933a" stroke-width="2.5"/>
+  <circle cx="0" cy="0" r="11" fill="#c9933a" opacity="0.9"/>
+  <circle cx="0" cy="0" r="6" fill="#13110e"/>
+  <circle cx="0" cy="0" r="3" fill="#c9933a"/>
+  <line x1="0" y1="-11" x2="0" y2="-38" stroke="#c9933a" stroke-width="2.2"/>
+  <line x1="0" y1="11" x2="0" y2="38" stroke="#c9933a" stroke-width="2.2"/>
+  <line x1="-11" y1="0" x2="-38" y2="0" stroke="#c9933a" stroke-width="2.2"/>
+  <line x1="11" y1="0" x2="38" y2="0" stroke="#c9933a" stroke-width="2.2"/>
+  <line x1="-8" y1="-8" x2="-27" y2="-27" stroke="#c9933a" stroke-width="2"/>
+  <line x1="8" y1="8" x2="27" y2="27" stroke="#c9933a" stroke-width="2"/>
+  <line x1="8" y1="-8" x2="27" y2="-27" stroke="#c9933a" stroke-width="2"/>
+  <line x1="-8" y1="8" x2="-27" y2="27" stroke="#c9933a" stroke-width="2"/>
+  <circle cx="0" cy="-40" r="4" fill="#c9933a"/>
+  <circle cx="0" cy="40" r="4" fill="#c9933a"/>
+  <circle cx="-40" cy="0" r="4" fill="#c9933a"/>
+  <circle cx="40" cy="0" r="4" fill="#c9933a"/>
+  <circle cx="-28" cy="-28" r="3.5" fill="#c9933a"/>
+  <circle cx="28" cy="28" r="3.5" fill="#c9933a"/>
+  <circle cx="28" cy="-28" r="3.5" fill="#c9933a"/>
+  <circle cx="-28" cy="28" r="3.5" fill="#c9933a"/>
+</g>
+</svg>
+</div>
+
+<!-- SUPPORTING LABEL -->
+<div class="section-label-wrap">
+  <span class="section-label">Supporting Characters</span>
+</div>
+
+<div class="supporting-grid">
+
+  <div class="support-card">
+    <h4 class="support-name">Tamb' Itam</h4>
+    <p class="support-epithet">Jim's devoted servant</p>
+    <p class="support-desc">Silent, loyal, ever-present. Tamb' Itam is the one who brings Jim the catastrophic news of Dain's ambush — and the one who kills Cornelius in revenge before warning Jim that safety is now impossible.</p>
+  </div>
+
+  <div class="support-card">
+    <h4 class="support-name">The Bugis People</h4>
+    <p class="support-epithet">The community Jim serves</p>
+    <p class="support-desc">The maritime trading people of Patusan — proud, capable, and long-suffering under warlord oppression. They welcome Jim with cautious hope and celebrate him as a liberator. Their grief at Dain's death — and Jim's role in it — is the moral weight that makes Jim's final walk necessary.</p>
+  </div>
+
+  <div class="support-card">
+    <h4 class="support-name">Sherif Ali</h4>
+    <p class="support-epithet">The warlord on the hill</p>
+    <p class="support-desc">The first of Jim's two enemies in Patusan — a ruthless local strongman whose stone fortress dominates the high ground. Jim's tactical genius in taking the fortress forms the centerpiece of "Tyrant's End." Ali flees into the trees when the battle is lost.</p>
+  </div>
+
+  <div class="support-card">
+    <h4 class="support-name">Rajah Allang</h4>
+    <p class="support-epithet">The corrupt local ruler</p>
+    <p class="support-desc">The second enemy — a petty, corrupt rajah who has bled Patusan's trade for years through bribes and manufactured disputes. Jim defeats him through documentation and political pressure rather than force, stripping him of legitimacy before a council of tribal chiefs. He flees downriver.</p>
+  </div>
+
+  <div class="support-card">
+    <h4 class="support-name">The Patna Officers</h4>
+    <p class="support-epithet">The men who ran</p>
+    <p class="support-desc">The German captain and two engineers who abandon ship with Jim but then flee justice entirely — disappearing into distant ports rather than facing the maritime inquiry. Their cowardice is the foil that makes Jim's decision to stay and testify meaningful.</p>
+  </div>
+
+  <div class="support-card">
+    <h4 class="support-name">The 800 Pilgrims</h4>
+    <p class="support-epithet">The weight Jim carries forever</p>
+    <p class="support-desc">They are never seen — only heard in the distance, sleeping in the iron hold of the Patna. Their survival is the cruelest twist: Jim's sacrifice of honor was unnecessary. They are the moral gravity around which the entire opera orbits.</p>
+  </div>
+
+</div>
+
+<!-- COMPASS DIVIDER — before relationship map -->
+<div class="nautical-divider">
+<svg width="100%" viewBox="0 0 680 160" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Compass rose divider</title>
+<g transform="translate(340,80)">
+  <line x1="-300" y1="0" x2="-82" y2="0" stroke="#c9933a" stroke-width="0.8" opacity="0.5"/>
+  <line x1="82" y1="0" x2="300" y2="0" stroke="#c9933a" stroke-width="0.8" opacity="0.5"/>
+  <circle cx="0" cy="0" r="72" fill="none" stroke="#c9933a" stroke-width="3.5"/>
+  <polygon points="0,-70 -11,-26 0,-6 11,-26" fill="#c9933a"/>
+  <polygon points="0,70 -11,26 0,6 11,26" fill="#c9933a"/>
+  <polygon points="70,0 26,-11 6,0 26,11" fill="#c9933a"/>
+  <polygon points="-70,0 -26,-11 -6,0 -26,11" fill="#c9933a"/>
+  <polygon points="49,-49 24,-18 18,-24" fill="#c9933a" opacity="0.85"/>
+  <polygon points="49,-49 18,-24 36,-36" fill="#c9933a" opacity="0.85"/>
+  <polygon points="-49,-49 -24,-18 -18,-24" fill="#c9933a" opacity="0.85"/>
+  <polygon points="-49,-49 -18,-24 -36,-36" fill="#c9933a" opacity="0.85"/>
+  <polygon points="49,49 24,18 18,24" fill="#c9933a" opacity="0.85"/>
+  <polygon points="49,49 18,24 36,36" fill="#c9933a" opacity="0.85"/>
+  <polygon points="-49,49 -24,18 -18,24" fill="#c9933a" opacity="0.85"/>
+  <polygon points="-49,49 -18,24 -36,36" fill="#c9933a" opacity="0.85"/>
+  <path d="M11,-26 Q22,-22 26,-11" fill="none" stroke="#13110e" stroke-width="6"/>
+  <path d="M26,11 Q22,22 11,26" fill="none" stroke="#13110e" stroke-width="6"/>
+  <path d="M-11,26 Q-22,22 -26,11" fill="none" stroke="#13110e" stroke-width="6"/>
+  <path d="M-26,-11 Q-22,-22 -11,-26" fill="none" stroke="#13110e" stroke-width="6"/>
+  <circle cx="0" cy="0" r="10" fill="#c9933a"/>
+  <circle cx="0" cy="0" r="5" fill="#13110e"/>
+  <circle cx="0" cy="0" r="2" fill="#c9933a"/>
+</g>
+</svg>
+</div>
+
+<!-- RELATIONSHIPS -->
+<div class="section-label-wrap">
+  <span class="section-label">Dramatic Relationships</span>
+</div>
+<div class="rel-section">
+<h2 class="rel-title">The Web of Consequence</h2>
+<div class="rel-grid">
+  <div class="rel-row">
+    <div><div class="rel-names">Jim &amp; Marlow</div><span class="rel-arrow">Patron → Protégé</span></div>
+    <p class="rel-desc">Marlow sees Jim's shame as something to be redeemed rather than condemned. He becomes Jim's only true advocate — the one who arranges Patusan and returns to bear witness. His final song is the opera's moral reckoning.</p>
+  </div>
+  <div class="rel-row">
+    <div><div class="rel-names">Jim &amp; Jewel</div><span class="rel-arrow">Love that cannot save him</span></div>
+    <p class="rel-desc">Jewel gives Jim the one thing he never had — someone who loves him knowing everything. She sees Brown's danger clearly where Jim cannot. Their final duet is the opera's most devastating scene: her pragmatism versus his idealism, with his life the stakes.</p>
+  </div>
+  <div class="rel-row">
+    <div><div class="rel-names">Jim &amp; Doramin</div><span class="rel-arrow">Father figure → Executioner</span></div>
+    <p class="rel-desc">Doramin welcomes Jim with the ring and comes to love him like a son — which makes his role in Jim's death the opera's most unbearable irony. He kills Jim not from anger but from the weight of a chief's duty to his people.</p>
+  </div>
+  <div class="rel-row">
+    <div><div class="rel-names">Jim &amp; Dain Waris</div><span class="rel-arrow">Brotherhood → Tragedy</span></div>
+    <p class="rel-desc">Jim's closest friend in Patusan, the man he trusts with his own seal of protection. Dain's death by Brown's ambush — wearing Jim's ring — is the event that ends everything. Jim's mercy killed his brother.</p>
+  </div>
+  <div class="rel-row">
+    <div><div class="rel-names">Jim &amp; Brown</div><span class="rel-arrow">Mirror → Manipulator</span></div>
+    <p class="rel-desc">Brown sees Jim's wound immediately and presses it with precision. Their confrontation at the creek is the opera's intellectual climax — Brown creating a false equivalence that Jim, haunted by the Patna, cannot fully refute.</p>
+  </div>
+  <div class="rel-row">
+    <div><div class="rel-names">Brown &amp; Cornelius</div><span class="rel-arrow">Opportunist × Informant</span></div>
+    <p class="rel-desc">Two bitter, marginal men who find each other in the dark. Cornelius provides the intelligence and the hidden creek; Brown provides the violence. Neither could have destroyed Jim alone.</p>
+  </div>
+  <div class="rel-row">
+    <div><div class="rel-names">Jewel &amp; Cornelius</div><span class="rel-arrow">Survivor vs. Tormentor</span></div>
+    <p class="rel-desc">Cornelius destroyed Jewel's mother. Jewel survived him by becoming harder and sharper than he could imagine. Her insistence on watching Jim's door is born directly from what she witnessed in that household.</p>
+  </div>
+  <div class="rel-row">
+    <div><div class="rel-names">Jim &amp; Brierly</div><span class="rel-arrow">Defendant → Unwitting destroyer</span></div>
+    <p class="rel-desc">Jim never knows that his testimony destroys Brierly. By forcing Brierly to confront the possibility of his own cowardice, Jim inadvertently kills the one judge who might have given him leniency.</p>
+  </div>
+  <div class="rel-row">
+    <div><div class="rel-names">Marlow &amp; Stein</div><span class="rel-arrow">Question → Answer</span></div>
+    <p class="rel-desc">Stein provides the philosophical framework that allows Marlow to help Jim rather than abandon him. Without Stein's butterfly metaphor — and his Patusan connection — Jim has nowhere left to go.</p>
+  </div>
+</div>
+</div>
+
+<footer>
+<p class="footer-title">LORD JIM</p>
+<p class="footer-text">A Rock Opera in Two Acts<br>Based on the novel by Joseph Conrad</p>
+<div class="footer-rule"></div>
+<p><a href="index.html" style="font-family:var(--display);font-size:.65rem;letter-spacing:.2em;color:var(--gold);text-decoration:none;text-transform:uppercase;">← Back to the Opera</a></p>
+<div style="height:2rem;"></div>
+<p class="footer-credit" style="opacity:.4;">Epic · Maritime · Unforgettable</p>
+</footer>
+
+<script>
+const sf=document.getElementById('stars');
+for(let i=0;i<60;i++){const s=document.createElement('div');s.className='star';const z=Math.random()*2+.5;s.style.cssText=`width:${z}px;height:${z}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${3+Math.random()*5}s;--delay:${Math.random()*6}s;--op:${.3+Math.random()*.7};`;sf.appendChild(s);}
+</script>
+</body>
+</html>

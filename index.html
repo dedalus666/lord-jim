@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lord Jim — A Rock Opera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;700;900&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--parchment:#f0e9d6;--gold:#c9933a;--gold-light:#e8b85a;--gold-dim:#7a5820;--fog:#8a9ba8;--char:#1a1612;--ink:#13110e;--serif:'Cormorant Garamond',Georgia,serif;--display:'Cinzel',serif;--fell:'IM Fell English',serif}
+html{scroll-behavior:smooth}
+body{background:var(--char);color:var(--parchment);font-family:var(--serif);font-size:18px;line-height:1.7;overflow-x:hidden}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(26,45,61,.9) 0%,transparent 70%),linear-gradient(180deg,#060504 0%,#0f0c09 40%,#1a1612 100%);z-index:0}
+.waves{position:absolute;bottom:0;left:0;right:0;height:180px;z-index:1;opacity:.35}
+.star-field{position:absolute;inset:0;z-index:0}
+.star{position:absolute;background:var(--parchment);border-radius:50%;animation:twinkle var(--d,4s) ease-in-out infinite;animation-delay:var(--delay,0s);opacity:0}
+@keyframes twinkle{0%,100%{opacity:0}50%{opacity:var(--op,.6)}}
+.hero-content{position:relative;z-index:2;animation:heroFade 2s ease-out forwards}
+@keyframes heroFade{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.overture-label{font-family:var(--display);font-size:.7rem;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:2rem;opacity:.85}
+.hero h1{font-family:var(--display);font-size:clamp(4rem,12vw,9rem);font-weight:900;letter-spacing:.08em;line-height:.9;color:var(--parchment);text-shadow:0 0 80px rgba(201,147,58,.3),0 4px 40px rgba(0,0,0,.8);margin-bottom:.5rem}
+.hero h1 span{display:block;font-size:clamp(1.8rem,5vw,3.5rem);font-weight:400;letter-spacing:.25em;color:var(--gold)}
+.hero-subtitle{font-family:var(--fell);font-style:italic;font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--fog);margin:2rem auto 1rem;max-width:600px}
+.hero-tagline{font-family:var(--fell);font-size:clamp(.95rem,2vw,1.2rem);color:var(--parchment);opacity:.7;max-width:520px;margin:0 auto 3rem;line-height:1.8}
+.hero-divider{width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 2.5rem}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;font-family:var(--display);font-size:.6rem;letter-spacing:.3em;color:var(--gold-dim);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:float 2s ease-in-out infinite}
+.scroll-hint::after{content:'';width:1px;height:40px;background:linear-gradient(180deg,var(--gold-dim),transparent)}
+@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-6px)}}
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,8,6,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,147,58,.15);padding:.8rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-family:var(--display);font-size:.85rem;letter-spacing:.25em;color:var(--gold);text-decoration:none;text-transform:uppercase}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--display);font-size:.65rem;letter-spacing:.2em;color:var(--fog);text-decoration:none;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--gold-light)}
+.section{max-width:900px;margin:0 auto;padding:6rem 2rem}
+.section-label{font-family:var(--display);font-size:.65rem;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem;opacity:.8}
+.section-title{font-family:var(--display);font-size:clamp(2rem,5vw,3.5rem);font-weight:700;color:var(--parchment);line-height:1.1;margin-bottom:2rem}
+.story{background:linear-gradient(180deg,var(--char) 0%,#12100d 100%);border-top:1px solid rgba(201,147,58,.1);border-bottom:1px solid rgba(201,147,58,.1)}
+.story-text{font-size:1.1rem;line-height:2;color:rgba(240,233,214,.85);max-width:680px}
+.story-text p{margin-bottom:1.5rem}
+.story-text strong{color:var(--gold-light);font-weight:600}
+.pull-quote{font-family:var(--fell);font-style:italic;font-size:1.6rem;line-height:1.5;color:var(--gold-light);border-left:2px solid var(--gold);padding:1rem 0 1rem 2rem;margin:3rem 0;opacity:.9}
+.nautical-divider{max-width:900px;margin:0 auto;padding:1rem 2rem;opacity:.9}
+.nautical-divider svg{display:block}
+.anchor-img-divider{padding:.5rem 2rem}
+.anchor-rules-wrap{display:flex;align-items:center;gap:0;max-width:900px;margin:0 auto}
+.anchor-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,147,58,.5));display:block}
+
+.anchor-img{width:160px;height:auto;flex-shrink:0;display:block;filter:drop-shadow(0 0 18px rgba(201,147,58,.25))}
+.act-header{position:relative;padding:5rem 2rem;text-align:center;overflow:hidden}
+.act-header.act-one{background:linear-gradient(180deg,#0a0806 0%,#0d1a26 50%,#0a0806 100%)}
+.act-header.act-two{background:linear-gradient(180deg,#0a0806 0%,#1a0d0a 50%,#0a0806 100%)}
+.act-number{font-family:var(--display);font-size:clamp(5rem,15vw,12rem);font-weight:900;opacity:.04;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--parchment);pointer-events:none;white-space:nowrap}
+.act-label{font-family:var(--display);font-size:.7rem;letter-spacing:.5em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;position:relative;z-index:1}
+.act-title{font-family:var(--display);font-size:clamp(2.5rem,7vw,5rem);font-weight:900;color:var(--parchment);position:relative;z-index:1;margin-bottom:1rem}
+.act-subtitle{font-family:var(--fell);font-style:italic;font-size:1.2rem;color:var(--fog);position:relative;z-index:1}
+.act-rule{width:200px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:2rem auto 0;position:relative;z-index:1}
+.songs-grid{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+.song-card{border:1px solid rgba(201,147,58,.12);margin-bottom:1.5rem;background:rgba(15,12,9,.6);transition:border-color .3s}
+.song-card:hover{border-color:rgba(201,147,58,.3)}
+.song-header{display:flex;align-items:center;gap:1.5rem;padding:1.5rem 2rem;cursor:pointer;user-select:none}
+.song-number{font-family:var(--display);font-size:.7rem;letter-spacing:.15em;color:var(--gold-dim);min-width:2.5rem;flex-shrink:0}
+.song-title{font-family:var(--display);font-size:clamp(1rem,2.5vw,1.3rem);font-weight:700;color:var(--parchment);flex:1;letter-spacing:.05em}
+.song-toggle{width:28px;height:28px;border:1px solid rgba(201,147,58,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s}
+.song-toggle svg{width:12px;height:12px;stroke:var(--gold);fill:none;stroke-width:2;transition:transform .3s}
+.song-card.open .song-toggle svg{transform:rotate(180deg)}
+.song-card.open .song-toggle{background:rgba(201,147,58,.1);border-color:var(--gold)}
+.song-body{display:none;padding:0 2rem 2rem;border-top:1px solid rgba(201,147,58,.08)}
+.song-card.open .song-body{display:block}
+.synopsis-label{font-family:var(--display);font-size:.6rem;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin:1.5rem 0 .75rem;opacity:.7}
+.synopsis-text{font-family:var(--serif);font-size:.95rem;line-height:1.85;color:rgba(240,233,214,.7);margin-bottom:2rem;font-style:italic}
+.lyrics-label{font-family:var(--display);font-size:.6rem;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem;opacity:.7;padding-top:1rem;border-top:1px solid rgba(201,147,58,.08)}
+.lyrics{font-family:var(--fell);font-size:1rem;line-height:2;color:rgba(240,233,214,.85);white-space:pre-line}
+.section-head{font-family:var(--display);font-size:.65rem;letter-spacing:.2em;color:var(--gold-dim);text-transform:uppercase;display:block;margin-bottom:.5rem;margin-top:1.5rem}
+.character{font-family:var(--display);font-size:.75rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:.25rem;margin-top:1.5rem}
+.tracklist{background:rgba(10,8,6,.8);border:1px solid rgba(201,147,58,.1);padding:3rem;margin:4rem 0}
+.tracklist-cols{display:grid;grid-template-columns:1fr 1fr;gap:2rem 4rem}
+.tracklist h3{font-family:var(--display);font-size:.7rem;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:1.2rem;opacity:.8}
+.tracklist ol{list-style:none;counter-reset:track}
+.tracklist li{counter-increment:track;font-family:var(--fell);font-size:1rem;color:rgba(240,233,214,.7);padding:.4rem 0;border-bottom:1px solid rgba(201,147,58,.06);display:flex;align-items:baseline;gap:.75rem;cursor:pointer;transition:color .2s}
+.tracklist li:hover{color:var(--gold-light)}
+.tracklist li::before{content:counter(track,decimal-leading-zero);font-family:var(--display);font-size:.65rem;color:var(--gold-dim);flex-shrink:0}
+footer{border-top:1px solid rgba(201,147,58,.1);padding:4rem 2rem;text-align:center}
+.footer-title{font-family:var(--display);font-size:1.5rem;font-weight:700;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem}
+.footer-text{font-family:var(--fell);font-style:italic;font-size:.95rem;color:var(--fog);max-width:400px;margin:0 auto 2rem}
+.footer-rule{width:60px;height:1px;background:var(--gold-dim);margin:2rem auto}
+.footer-credit{font-family:var(--display);font-size:.6rem;letter-spacing:.2em;color:var(--gold-dim);text-transform:uppercase}
+@media(max-width:640px){.nav-links{display:none}.tracklist-cols{grid-template-columns:1fr}.tracklist{padding:1.5rem}.song-header{padding:1.2rem 1rem;gap:1rem}.song-body{padding:0 1rem 1.5rem}.songs-grid{padding:0 1rem 4rem}.section{padding:4rem 1rem}}
+</style>
+</head>
+<body>
+
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="star-field" id="stars"></div>
+<svg class="waves" viewBox="0 0 1440 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,90 C240,130 480,50 720,90 C960,130 1200,50 1440,90 L1440,180 L0,180 Z" fill="rgba(26,45,61,0.5)"/>
+  <path d="M0,120 C360,80 720,160 1080,120 C1260,100 1360,130 1440,110 L1440,180 L0,180 Z" fill="rgba(10,8,6,0.7)"/>
+</svg>
+<div class="hero-content">
+  <p class="overture-label">A Rock Opera in Two Acts</p>
+  <h1>LORD<br><span>JIM</span></h1>
+  <div class="hero-divider"></div>
+  <p class="hero-subtitle">From Conrad's masterpiece to the modern stage</p>
+  <p class="hero-tagline">A timeless story of honor, guilt, and the price of redemption — told through the raw power of progressive rock</p>
+</div>
+<div class="scroll-hint">Descend</div>
+</section>
+
+<nav class="nav">
+<a href="#top" class="nav-brand">Lord Jim</a>
+<ul class="nav-links">
+  <li><a href="#story">The Story</a></li>
+  <li><a href="#act-one">Act I</a></li>
+  <li><a href="#act-two">Act II</a></li>
+  <li><a href="#tracklist">Tracklist</a></li>
+  <li><a href="characters.html">Characters</a></li>
+</ul>
+</nav>
+
+<section class="story" id="story">
+<div class="section" style="padding-top:2rem;padding-bottom:2rem;">
+<p class="section-label">The Story</p>
+<h2 class="section-title">What happens when<br>one moment defines<br>your entire life?</h2>
+<div class="story-text">
+<p>For <strong>Jim</strong>, a young sailor with dreams of heroism, that moment comes when he abandons 800 Muslim pilgrims aboard what he believes is a sinking ship. The passengers survive. Jim's honor does not.</p>
+<div class="pull-quote">"He's one of us — a sailor born with honor in his bones."</div>
+<p>Jim doesn't run from justice — he faces the maritime court with dignity, accepts his punishment, and surrenders his sailor's credentials. But standing trial can't erase the guilt and shame. Everywhere he turns, he's met with whispers: <em>coward, deserter, the man who jumped.</em></p>
+<p>The seasoned sailor <strong>Marlow</strong> sees Jim as "one of us" and recognizes his lost potential. Events take a turn when Marlow's friend, an elderly German butterfly collector, offers Jim refuge in <strong>Patusan</strong> — a remote jungle settlement where no one knows his past. There, among the Bugis people, Jim transforms into <em>Lord Jim</em> — beloved leader, warrior, tactical genius, and finally the hero he always dreamed of being.</p>
+<p>But when ruthless pirate <strong>Gentleman Brown</strong> arrives, the guilt of Jim's past returns with devastating consequences. Jim's choice to show mercy triggers a massacre. The result is inevitable.</p>
+<div class="pull-quote">"In the destructive element immerse."<br><span style="font-size:1rem;opacity:.7;">— Stein's Wisdom</span></div>
+<p><strong>Lord Jim</strong> is a sweeping rock opera combining the literary depth of Conrad with the visceral power of progressive rock. Through 22 original songs ranging from intimate ballads to full-company anthems, this is a story about the weight of a single choice, the cost of redemption, and what it means to finally stop running from who you are.</p>
+</div>
+
+<div class="tracklist" id="tracklist">
+<div class="tracklist-cols">
+<div>
+<h3>Act One — The Fall</h3>
+<ol>
+<li onclick="openSong('song-1')">Sailor's Overture</li>
+<li onclick="openSong('song-2')">The Pilgrims Sleep</li>
+<li onclick="openSong('song-3')">Abandon Ship</li>
+<li onclick="openSong('song-4')">The Patna Lives</li>
+<li onclick="openSong('song-5')">Trial by the Sea</li>
+<li onclick="openSong('song-6')">One of Us</li>
+<li onclick="openSong('song-7')">Brierly's Ghost</li>
+<li onclick="openSong('song-8')">Running</li>
+<li onclick="openSong('song-9')">Stein's Wisdom</li>
+<li onclick="openSong('song-10')">Patusan</li>
+</ol>
+</div>
+<div>
+<h3>Act Two — The Redemption</h3>
+<ol>
+<li onclick="openSong('song-11')">Tyrant's End</li>
+<li onclick="openSong('song-12')">Lord Jim</li>
+<li onclick="openSong('song-13')">Jewel's Story</li>
+<li onclick="openSong('song-14')">Marlow's Return</li>
+<li onclick="openSong('song-15')">Gentleman Brown</li>
+<li onclick="openSong('song-16')">The Council</li>
+<li onclick="openSong('song-17')">The Confrontation</li>
+<li onclick="openSong('song-18')">The Blood Runs Red</li>
+<li onclick="openSong('song-19')">Doramin's Grief</li>
+<li onclick="openSong('song-20')">Jewel's Plea</li>
+<li onclick="openSong('song-21')">The Walk</li>
+<li onclick="openSong('song-22')">Finale — Lord Jim</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ANCHOR DIVIDER -->
+<div class="nautical-divider anchor-img-divider">
+<div class="anchor-rules-wrap">
+  <span class="anchor-rule-line" style="background:linear-gradient(90deg,transparent,rgba(201,147,58,.5));"></span>
+  <img src="anchor.jpeg" alt="Anchor" class="anchor-img"/>
+  <span class="anchor-rule-line" style="background:linear-gradient(270deg,transparent,rgba(201,147,58,.5));"></span>
+</div>
+</div>
+
+<div class="act-header act-one" id="act-one">
+<div class="act-number">ACT ONE</div>
+<p class="act-label">Act One</p>
+<h2 class="act-title">The Fall</h2>
+<p class="act-subtitle">A young man's dream meets the unforgiving sea</p>
+<div class="act-rule"></div>
+</div>
+
+<div class="songs-grid">
+
+<div class="song-card" id="song-1">
+<div class="song-header" onclick="toggleSong('song-1')"><span class="song-number">01</span><span class="song-title">Sailor's Overture</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">The show opens with young Jim aboard a training ship, dreaming of his future as a heroic sailor. This aspirational opening number establishes Jim's romantic self-image — he sees himself as destined for greatness. The song builds from quiet contemplation to triumphant declaration, but seeds of doubt appear in the bridge. The outro previews the entire arc: guilt and honor bearing down on his redemption.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="section-head">Verse 1</span>On the endless sea, where the waves run free,
+A young man sails with dreams in his eyes.
+Bound for distant shores, where adventure roars,
+He's eager for the world to realize
+To be the captain of a ship will be his prize
+
+<span class="section-head">Chorus</span>Sailor, sailor, on the open sea,
+Your destiny awaits, what will it be?
+Sailor, sailor, wind in your sails
+A life of adventures, thrilling ocean tales
+Sailor, sailor, the stars as your guide
+Raise your anchor, set your course and let your spirit ride.
+
+<span class="section-head">Verse 2</span>But the sea is cruel, and the night is long,
+And storms will test the bravest of hearts.
+When the ship is tossed, and all seems lost,
+Will he find the inner strength to play his part?
+
+<span class="section-head">Bridge</span>In the blinding spray of the ocean mist
+And in the deadly sting of her salty kiss
+On the darkest night within the tempests swirl
+On the open decks with the masts unfurled
+Will he find the flame of courage still alight?
+Will he have resolve within to do what's right?
+
+<span class="section-head">Outro</span>So our adventure now begins, with the rising of the sun,
+A tale of a sailor's life, the battles lost and the battles won.
+For on the open sea, where the dreams run free,
+A young man finds his destiny
+In the tales passed down our Lord Jim will be mentioned
+From the squalls that rise in the depths of blue
+The loves and lives cleaved by the ocean true
+Guilt and honor bearing down on his redemption</div>
+</div>
+</div>
+
+<div class="song-card" id="song-2">
+<div class="song-header" onclick="toggleSong('song-2')"><span class="song-number">02</span><span class="song-title">The Pilgrims Sleep</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Night has fallen. Jim stands on the deck of the Patna, looking down into the hold where 800 Muslim pilgrims sleep shoulder to shoulder. A brief, haunting soliloquy that creates dramatic irony and establishes the stakes before "Abandon Ship."</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="section-head">Verse 1</span>Eight hundred pilgrims in the hull they stir
+Sailing for salvation yes they were
+Mothers, fathers, children, young and old
+Their faith in more than steel and gold
+
+<span class="section-head">Verse 2</span>Shoulder to shoulder in the iron deep
+Restless souls in a fitful sleep
+Bound for new lands with dreams to spare
+Despite the harrowing journey just to get them there
+
+<span class="section-head">Chorus</span>How light they are, how heavy is the weight
+Of holding all these lives against the fickle hand of fate
+They trust the wood, the water, and the men
+Who swore a seaman's oath to never break or bend
+
+<span class="section-head">Outro</span>Eight hundred beating hearts below
+Keeping rhythm with the waves rocking to and fro
+Can we deliver this cargo safe and sound
+To the lands where the maps indicate we're bound</div>
+</div>
+</div>
+
+<div class="song-card" id="song-3">
+<div class="song-header" onclick="toggleSong('song-3')"><span class="song-number">03</span><span class="song-title">Abandon Ship</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">In the dead of night, the Patna strikes an unknown object. Jim stands frozen on deck, paralyzed by indecision as panic erupts around him. With 800 pilgrims locked below and insufficient lifeboats, Jim and the crew abandon ship. The song ends with the cruel twist: the Patna doesn't sink — transforming Jim's tragic mistake into an unforgivable act of cowardice.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="section-head">Verse 1</span>In the dead of night, in the wide mouth of the sea
+There was a shuddering jolt, a shuddering creak
+The ship cries out and groans, rusted maritime pride
+As an unknown object met the mounting tide
+
+<span class="section-head">Chorus</span>Abandon ship, leave the pilgrims behind
+Into the lifeboat the crew resigned
+Their duty forsaken their honor maligned
+As they flee the Patna, a cowardly crime
+
+<span class="section-head">Verse 2</span>Jim, standing frozen on deck, the depths of his heart in a bind
+Facing the ire of this moment with a troubling mind
+All aboard will be left to drown, when the ship is swallowed in blue
+Fighting the fury of not knowing just what to do
+
+<span class="section-head">Chorus 2</span>Abandon ship, in the dark of the night
+Into the lifeboat escaping their plight
+A squall bears down, there is no time
+The ship's destiny is a bottomless brine
+
+<span class="section-head">Bridge</span>Lashed by the sea the lifeboat drifts and sways
+Jim's choice fills him with regret and a deep, dark dismay
+No captain or course, the Patna faces its doom
+A dot on the horizon, surely it will disappear soon
+
+<span class="section-head">Chorus 3</span>Abandon ship, the sea's cruel jest
+Into the lifeboat, the guilt in his chest
+The Patna slips, beneath the dark waves
+Jim's soul adrift, in the life he must brave
+
+<span class="section-head">Outro</span>Torn between duty and despair
+the tomes of the sea exact a weighty burden Jim must now bear
+The path forward uncertain, his fate now cast
+Will the course of his future be determined by the sins of his past?</div>
+</div>
+</div>
+
+<div class="song-card" id="song-4">
+<div class="song-header" onclick="toggleSong('song-4')"><span class="song-number">04</span><span class="song-title">The Patna Lives</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Shocking news: a French gunboat has towed the intact Patna to port with all 800 passengers alive. The officers' story was a lie. The song tracks the news spreading — from initial confusion to dawning horror to public outrage. While the guilty captain and engineers flee, Jim remains to face the consequences alone.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="character">Crew — exhausted, to their rescuers</span>We were picked up at dawn by a merchant brig
+Lifeboat drifting, tossed by the whitecaps
+The captain spoke first, his voice was grim
+"The Patna went down in the night"
+"Eight hundred pilgrims, all of them lost"
+"The hull gave way, she couldn't be saved"
+"We barely escaped with our lives"
+
+<span class="character">Rescuers — horrified</span>Eight hundred souls? Gone beneath the waves?
+What a tragedy — what a terrible fate
+The officers managed to escape
+But all those passengers sealed below
+My God, what a loss
+
+<span class="character">News spreading — Ensemble</span>Have you heard? The Patna went down
+Eight hundred pilgrims drowned
+The officers survived but everyone else
+Lost to the sea — what a horror
+
+<span class="character">A Harbor Master — urgent</span>Wait — there's news from the southern port
+A ship came in this morning
+Towed by a French gunboat
+Listing badly but afloat
+The name on the hull: Patna
+
+<span class="character">Ensemble — dawning horror</span>The Patna? The Patna?
+But they said she sank — how can this be?
+The passengers alive? Alive!
+All eight hundred — alive and well
+They abandoned them
+Left them to die, left them all to drown
+Then they lied — Lied!
+
+<span class="section-head">Final Verse — Ensemble</span>Where are the officers? Where are the crew?
+The German captain and two engineers — it appears they have fled
+The first mate is still here
+Then he'll have to answer for them all
+What was his name? What is he called?
+His name was Jim
+
+<span class="section-head">Outro</span>The maritime court has been convened
+The inquiry begins today
+Someone must answer for what happened on the Patna
+We must have answers, someone must pay
+For the lie — a terrible violation
+Of both the sailor's code and of humanity</div>
+</div>
+</div>
+
+<div class="song-card" id="song-5">
+<div class="song-header" onclick="toggleSong('song-5')"><span class="song-number">05</span><span class="song-title">Trial by the Sea</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Jim faces a formal maritime inquiry. Unlike the captain and officers who fled, Jim chooses to stay and testify. The song builds from the oppressive atmosphere of accusation through Jim's testimony to the devastating verdict that strips him of his maritime certificates and career. This is Jim's public humiliation — the moment his romantic dreams of heroism are officially destroyed.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="section-head">Intro</span>In the maritime courtroom shadows stretch long,
+Jim stands with downcast eyes, burdened by wrong
+Voices clap, hateful and with curses, cracking silence in the room
+Like sea-spray stinging his eyes, facing violence
+Visage a grim-glazed portrait of gloom
+
+<span class="section-head">Chorus</span>In the trial of the sea, truth runs deep,
+Judgment cast from the depths — from tides that never sleep.
+The Patna's tale, a bitter haunting cry,
+To be recounted here, the how and why
+
+<span class="section-head">Verse 1</span>Jim stands alone the sole figure with a story to tell
+His soul laid bare to the bone — events that led to this hell
+The courtroom stricken with horror as the tale unfolds
+Eight hundred pilgrims left for dead — men, women, children, the young and old
+
+<span class="section-head">Verse 2</span>The crew abandoned the steamship believing it to be doomed
+Not enough lifeboats for the rest — it would all be over very soon
+A squall was bearing down, there was a simple choice to make
+Leave now or risk being swallowed in its wake
+
+<span class="section-head">Verse 3</span>So Jim accompanied the crew — and left the Patna behind
+Passengers locked below the deck — soon to be sucked deep into the brine
+As night fell, Jim swore he heard their screams
+But fate would turn things in their favor it would seem
+
+<span class="section-head">Verse 4</span>The crew and captain on the run, fled to distant ports abroad
+Their shame pushed them to hiding in the shadows of their fraud
+Jim stands alone to face the court, bearing the weight for all their crimes
+Accepting guilt, his punishment and penance, he will serve his time
+
+<span class="section-head">Bridge</span>"I jumped," Jim says, his voice cuts through the courtroom's heavy air
+"I left my post, I broke my oath, the passengers below were unaware
+When courage called my name that night, I answered with defeat
+I am guilty of the charge — and my confession is complete"
+
+<span class="section-head">Outro</span>The verdict echoes through the hall like Sirens on the crest of waves
+"Your certificate is void, you'll never captain ships or save
+The lives entrusted to your care — you've shown yourself to be unfit
+To bear the sailor's oath you swore" — Jim bows his head accepting all of it</div>
+</div>
+</div>
+
+<div class="song-card" id="song-6">
+<div class="song-header" onclick="toggleSong('song-6')"><span class="song-number">06</span><span class="song-title">One of Us</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Captain Marlow finds Jim at the harbor gate, staring at the ships he can no longer captain. Marlow sees something noble in Jim's decision to stay and face the court. He offers Jim compassion and hope, promising to help him find "another shore." The emotional turning point of Act One — the moment hope enters Jim's story.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="section-head">Verse 1</span>I've watched a hundred sailors stand before the maritime court
+Men who lied through rotting teeth, men of every broken sort
+But this young man with downcast eyes, he didn't run or hide
+He stood there in the witness box with his eviscerated pride
+
+<span class="section-head">Verse 2</span>The German captain disappeared, the engineers all fled
+Left this young man to face the music, left him there for dead
+But something in the way he spoke, the weight he chose to bear
+Made me see a younger version of myself standing there
+
+<span class="section-head">Pre-Chorus</span>He's got the mark upon him now
+The stain that doesn't wash
+But underneath the shame and guilt
+There's something worth the cost
+
+<span class="section-head">Chorus</span>He's one of us
+A sailor born with honor in his bones
+One of us
+Though he's lost his way and will never return home
+The sea's not done with him, I know
+There's redemption in the undertow
+He jumped, he fell, he failed the test
+But he's one of us (not like the rest)
+One of us
+
+<span class="section-head">Verse 3</span>I found him at the harbor gate, staring at the ships
+The life he knew was over, having slipped through his fingertips
+"What will you do now?" I asked Jim and this is what he said:
+"I'm at a loss, what can I do but lie down in this burning bed?"
+
+<span class="section-head">Verse 4</span>I've seen men crack like crystal chalices when crisis calls their name
+I've watched the bravest turn to cowards drowning in their shame
+But this one stayed to face the music though the others ran
+There must be some chance of redemption for this broken hearted man
+
+<span class="section-head">Bridge</span>I've sailed these waters forty years
+I know what courage has undone
+It's not just standing tall when called
+It's facing what you have become
+And owning every single choice
+That taught you, brought you to your knees
+Now do you bow your head below the deck
+Or face the ocean breeze
+
+<span class="section-head">Final Chorus</span>He's one of us
+And I'll help him find another shore
+One of us
+There's a future past this maritime court door
+I'll send him east where he can start
+A place to rebuild what fell apart
+He jumped, but he can rise again
+'Cause he's one of us till the very end
+One of us
+
+<span class="section-head">Outro</span>In the brotherhood of broken men
+Who've faced the truth and stayed
+He's one of us
+One of us
+Our Jim will find his way</div>
+</div>
+</div>
+
+<div class="song-card" id="song-7">
+<div class="song-header" onclick="toggleSong('song-7')"><span class="song-number">07</span><span class="song-title">Brierly's Ghost</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Captain Brierly — a decorated judge at Jim's inquiry with a perfect twenty-year record — watches Jim's trial and is forced to confront an unbearable question: Would I have jumped too? Unable to shake the possibility, he is destroyed by self-doubt. Days after the trial, he steps into the ocean. This dark soliloquy reveals that the line between hero and coward may be far thinner than anyone wants to believe.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="section-head">Verse 1</span>They call me Captain Brierly, decorated and revered
+Twenty years upon the water, never faltered, never feared
+My record shines like polished brass, my reputation pure
+But I sat in judgment of that boy and now I'm not so sure
+
+<span class="section-head">Verse 2</span>I looked into his face and asked myself an honest question plain
+Would I have stayed aboard the Patna or jumped into the rain?
+Eight hundred souls below the deck, a ship about to break
+Feeling helpless and unknowing — a very complex choice to make
+
+<span class="section-head">Chorus</span>What if I'd have jumped too?
+What if it's all a lie?
+What if I'm no better than the man I just condemned?
+I've worn this uniform like armor but it's only cloth and thread
+And I can't shake the possibility — I may have done just what Jim did
+
+<span class="section-head">Verse 3</span>I exercised my judgement from the bench, stripped his credentials away
+But standing on that sinking deck, would I have had the resolve to stay?
+The medals on my chest are heavy now, they're pulling me below
+To the place where honest captains face the things they cannot know
+
+<span class="section-head">Outro</span>So I'll step into the water, let the ocean take me down
+Where failures and the flawless wear the same dark, heavy crown
+They'll say my death was a mystery, though I was as brave a man as most
+They'll wonder how to scribe my history, forever haunted by Brierly's ghost</div>
+</div>
+</div>
+
+<div class="song-card" id="song-8">
+<div class="song-header" onclick="toggleSong('song-8')"><span class="song-number">08</span><span class="song-title">Running</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">After his humiliation, Jim flees across Southeast Asia — Rangoon, Singapore, Penang, Java, Saigon, Manila — working at various ports but never staying long. Everywhere he goes, someone eventually recognizes him. The song captures this relentless, exhausting pattern and Jim's growing realization that the past follows him not because others spread the story, but because he carries it within himself.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="section-head">Verse 1</span>Jim found work in Rangoon on the teak wood docks
+A carpenter's apprentice, building boats and stocks
+The monsoon rains came heavy and true
+Then a captain recognized his face and by dawn Jim was through
+
+<span class="section-head">Verse 2</span>Singapore's harbor lights, a chandler's narrow store
+Keeping ledgers, inventory, sweeping floors
+The straits were thick with merchant ships passing day and night
+But a whispered name from a sailor's lips and Jim was gone before the light
+
+<span class="section-head">Chorus</span>He's running east from the harbor to the hills
+Running from his past, the shame, the sins are right behind
+Every port holds promise till the past
+appears again, he's always apt to find
+He can't outrun his mind
+
+<span class="section-head">Verse 3</span>Penang's spice markets, Java's volcanic shore
+Saigon's river delta, always one port more
+Searching for distractions, hoping to stay unrecognized at least
+But maps and charts don't lead to places of a true and lasting peace
+
+<span class="section-head">Bridge</span>How many harbors can a man pass through
+Before he learns the thing he's running from is running with him too?
+The sea connects each place he's been
+Every port's a mirror showing him
+Reliving memories of the Patna in waking hours and in sleep
+A tattoo upon his soul, the weight to bear, the pain to keep
+
+<span class="section-head">Verse 4</span>Manila by December, the work was getting thin
+Down and out and weary still kept his chin tucked in
+Marlow sent letters: "Come back, there's a way"
+But answering means stopping and Jim cannot stop or stay
+
+<span class="section-head">Final Chorus — Jim</span>I am running east from the harbor to the hills
+Running from my past, the shame, the sins are right behind
+How much guilt is there to swallow
+How many ports until the past won't follow?
+How am I to navigate this pain
+When the thing I'm running from
+Is running in my veins</div>
+</div>
+</div>
+
+<div class="song-card" id="song-9">
+<div class="song-header" onclick="toggleSong('song-9')"><span class="song-number">09</span><span class="song-title">Stein's Wisdom</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Marlow seeks counsel from Stein, an elderly German merchant and butterfly collector. In this philosophical duet, Stein diagnoses Jim's condition through his beloved specimens — butterflies made for the light, beetles made for darkness. Jim is a romantic who must embrace his nature completely. Stein offers to send Jim to Patusan with a ring as a token of trust.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="character">Marlow</span>Stein, I need your counsel on a difficult case
+A young man in a downward spiral, who cannot find his place
+He runs from port to port, cannot settle anywhere
+The past follows him like a shadow, he's drowning in despair
+
+<span class="character">Stein</span>Ah, Marlow, sit, have a brandy
+Tell me all of it — the full story
+You have a keen eye for the best of tales
+All of the grit, heartbreak and glory
+
+<span class="character">Marlow</span>His name is Jim, he jumped from the Patna when he thought she'd sink
+Left eight hundred pilgrims to drown, or so he thought in that terrible blink
+And now he's been stripped of everything, because the ship didn't go down
+Lost his certificates, honor and integrity, career at sea has run aground
+
+<span class="character">Stein</span>Interesting! Bring me that case there, the blue specimens on the shelf
+Let me show you something about butterflies, about Jim and about yourself
+Morpho's use the sun for navigation — a consistent angle relative to the source
+When artificial light disrupts their paths, it leaves them spiraling off their course
+
+Some creatures are made for darkness — larder beetles in the soil
+They burrow deep below the surface, under rocks, prefer dim-lit dampness, in which to toil
+But butterflies, Marlow, they are made for the sun
+They relish the light so much they'd willingly burn
+Careening toward a brightness that could both fulfill or destroy their destinies in turn
+
+<span class="character">Marlow</span>So you're saying Jim is a butterfly? A romantic doomed to fail?
+That seems a cruel diagnosis for a man so forlorn and frail
+
+<span class="character">Stein</span>No, no, Marlow you misunderstand the metaphor and me, my friend
+I am saying he must embrace what he is at all costs, right up until the bitter end
+He is a dreamer, a romantic, this is his nature, yes?
+Then he must fulfill his dream completely, not run from his distress
+
+<span class="section-head">Chorus — Stein</span>In the destructive element immerse
+This is the only way
+He cannot run from what he is
+He must dive into the fray
+Stop trying to be practical
+Stop hiding from the light
+He must become the hero he has imagined
+Or die trying in a bloody fight
+
+<span class="character">Marlow</span>But how? Where can he go where the past won't follow close?
+Every port knows the story of the Patna, every sailor knows of Brierly's ghost
+
+<span class="character">Stein</span>I have a place, Patusan, deep in the jungle where
+A river settlement thrives, a trading post, no one has heard the stories there
+No ships, no courts, no inquiries to remind him of his fall
+Just rainforest, river, and poisonous snakes, plus a chance to answer his true call
+
+I need a man there, someone I can trust with the trade
+Send him with this ring and with my grace, let him make his own crusade
+He can be what he has always dreamed
+Or he can fail and die magnificently
+But either way, he will have lived not lied
+Not hidden behind his shame or his broken pride
+
+<span class="section-head">Bridge — Stein</span>The question is not whether he will face the flame again
+The question is: will he fly toward it as himself or as another man?
+I say let him fly
+Let him immerse himself completely in the element that burns
+Perhaps he will find redemption
+Perhaps he will find peace in the fight
+Or perhaps he will simply find
+That he was always meant to be
+A romantic creature of the light
+
+<span class="section-head">Final Chorus — Stein &amp; Marlow</span>In the destructive element immerse
+This is the only way
+He cannot run from what he is
+He must dive into the fray
+Stop trying to be practical
+Stop hiding from the light
+Send him to Patusan where he can be
+The hero he imagined — in the jungle, wrong or right
+
+<span class="section-head">Outro — Marlow</span>So I will send your ring to Jim and him to Patusan
+And I will tell young Jim there is a way
+That an old German butterfly collector
+Has given him another day
+To chase the light that might consume him
+To dream his most dangerous dream
+And maybe, just maybe — Jim will find
+Find out what redemption means
+
+<span class="character">Stein</span>In the destructive element, Marlow
+We all must immerse
+It is the only way to live
+For the better or for the worse</div>
+</div>
+</div>
+
+<div class="song-card" id="song-10">
+<div class="song-header" onclick="toggleSong('song-10')"><span class="song-number">10</span><span class="song-title">Patusan — Act One Finale</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Jim travels upriver deep into the jungle interior to Patusan, a remote Malay settlement oppressed by warlords and desperate for leadership. Marlow narrates Jim's arrival. The villagers are initially suspicious. The elder Doramin cautiously welcomes Jim with Stein's token ring. The song builds from uncertainty to triumphant welcome, ending Act One on a note of possibility.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="section-head">Intro — Marlow, narrating</span>Up river Jim traveled deep into the fecund green
+Further from the ports and courts and everything he'd ever been
+Through the dense jungle where the trees and vines like a canopy block the sun
+To a place where maps grow thin and worn and a compass is useful to no one
+
+<span class="section-head">Verse 1 — Marlow</span>Patusan appeared from the mist like a fearful child
+Stilted bamboo huts on the water, the natives eyes, curious, meek and mild
+A village caught between warlords, oppressed, tired and abused
+A people waiting for deliverance, seeking hope in the place of a white man's ruse
+
+<span class="character">Villagers — tentative</span>Who is this stranger walking with care
+Pale skin, haunted eyes, a benevolent stare
+Plunder on his mind or will salvation ring
+We've seen outsiders promise much and deliver not a thing
+
+<span class="section-head">Marlow</span>Jim stepped onto the muddy banks with something in his stance
+A man who'd lost everything now peering at a second chance
+He looked at them, they looked at him, suspended in that space
+Where the past doesn't mean anything if you're extending a hand in grace
+
+<span class="section-head">Chorus — Villagers &amp; Marlow, building</span>Patusan, Patusan
+Dense inland port, deep river of mud
+Glades so full of promise
+Now a land of scars and rivulets of blood
+Once proud our tribes lifted up each other in song
+Is there a way to restore the pride in this land
+Can we right what has been wronged?
+
+<span class="section-head">Verse 3 — Marlow</span>The elder, Doramin came forward, massive, dignified and gray
+The ring from Stein in Jim's hand, this must be the man he was told would come someday
+He studied Jim with careful eyes that had seen his share of loss
+He would protect his people with great fortitude — no matter what the cost
+
+<span class="section-head">Bridge — Jim, internal</span>Jim thought: Here I am unknown, just an outsider from the mainland
+Maybe here I could find my purpose — help these people to secure peace again
+No one has heard of the Patna, no one cares what happened in the past
+Here I've got nothing to lose, a chance to offer something real at last
+
+<span class="section-head">Building Chorus — Full Company</span>Patusan, Patusan
+Gem of the tropics, known to only a few
+Welcome, stranger give us hope
+Are you the leader we need, steadfast and true
+Are you a symptom of the disease or perhaps a cure
+Is there a way to restore the pride in this land
+Can you help us to rebuild and steer us sure
+
+<span class="section-head">Final Chorus — Triumphant, Full Company</span>Patusan, Patusan
+Meranti's reaching up to the sky
+Friend, take our hands, you are welcome here
+For there's something true — virtue undenied
+Can you help us fill the emptiness of this forsaken land
+Can you revive our aching hearts and bones
+Beside these towering trees, with just some mud and sand
+
+We think you can
+Welcome to Patusan
+
+<span class="section-head">Outro — Marlow</span>The first act of his story ended in disgrace
+The second act begins anew here in this wild and sacred place
+Will the man who made a terrible slight begin a new chapter and verse
+Does Patusan hold glory for our Jim or will his demons still exact their curse
+The jungle holds its secrets close
+But on that day Jim stepped ashore
+The village welcomed him with open arms
+And he became a part of Patusan lore</div>
+</div>
+</div>
+
+</div>
+
+<!-- ROPE & HELM DIVIDER -->
+<div class="nautical-divider">
+<svg width="100%" viewBox="0 0 680 120" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Rope and helm wheel divider</title>
+<g transform="translate(340,60)">
+  <line x1="-300" y1="0" x2="-240" y2="0" stroke="#c9933a" stroke-width="0.8" opacity="0.5"/>
+  <line x1="240" y1="0" x2="300" y2="0" stroke="#c9933a" stroke-width="0.8" opacity="0.5"/>
+  <ellipse cx="-288" cy="0" rx="7" ry="5" fill="none" stroke="#c9933a" stroke-width="1.8"/>
+  <path d="M-267,0 C-257,-9 -247,-9 -237,0 C-227,9 -217,9 -207,0 C-197,-9 -187,-9 -177,0 C-167,9 -157,9 -147,0 C-137,-9 -127,-9 -117,0 C-107,9 -97,9 -87,0" fill="none" stroke="#c9933a" stroke-width="2.2" opacity="0.9"/>
+  <path d="M-267,0 C-257,7 -247,9 -237,5 C-227,-3 -217,-9 -207,-5 C-197,3 -187,9 -177,5 C-167,-3 -157,-9 -147,-5 C-137,3 -127,9 -117,5 C-107,-3 -97,-9 -87,-5" fill="none" stroke="#e8b85a" stroke-width="1.2" opacity="0.45"/>
+  <circle cx="-80" cy="0" r="9" fill="none" stroke="#c9933a" stroke-width="2"/>
+  <circle cx="-80" cy="0" r="4" fill="#c9933a" opacity="0.6"/>
+  <ellipse cx="288" cy="0" rx="7" ry="5" fill="none" stroke="#c9933a" stroke-width="1.8"/>
+  <path d="M267,0 C257,-9 247,-9 237,0 C227,9 217,9 207,0 C197,-9 187,-9 177,0 C167,9 157,9 147,0 C137,-9 127,-9 117,0 C107,9 97,9 87,0" fill="none" stroke="#c9933a" stroke-width="2.2" opacity="0.9"/>
+  <path d="M267,0 C257,7 247,9 237,5 C227,-3 217,-9 207,-5 C197,3 187,9 177,5 C167,-3 157,-9 147,-5 C137,3 127,9 117,5 C107,-3 97,-9 87,-5" fill="none" stroke="#e8b85a" stroke-width="1.2" opacity="0.45"/>
+  <circle cx="80" cy="0" r="9" fill="none" stroke="#c9933a" stroke-width="2"/>
+  <circle cx="80" cy="0" r="4" fill="#c9933a" opacity="0.6"/>
+  <circle cx="0" cy="0" r="40" fill="none" stroke="#c9933a" stroke-width="2.5"/>
+  <circle cx="0" cy="0" r="11" fill="#c9933a" opacity="0.9"/>
+  <circle cx="0" cy="0" r="6" fill="#13110e"/>
+  <circle cx="0" cy="0" r="3" fill="#c9933a"/>
+  <line x1="0" y1="-11" x2="0" y2="-38" stroke="#c9933a" stroke-width="2.2"/>
+  <line x1="0" y1="11" x2="0" y2="38" stroke="#c9933a" stroke-width="2.2"/>
+  <line x1="-11" y1="0" x2="-38" y2="0" stroke="#c9933a" stroke-width="2.2"/>
+  <line x1="11" y1="0" x2="38" y2="0" stroke="#c9933a" stroke-width="2.2"/>
+  <line x1="-8" y1="-8" x2="-27" y2="-27" stroke="#c9933a" stroke-width="2"/>
+  <line x1="8" y1="8" x2="27" y2="27" stroke="#c9933a" stroke-width="2"/>
+  <line x1="8" y1="-8" x2="27" y2="-27" stroke="#c9933a" stroke-width="2"/>
+  <line x1="-8" y1="8" x2="-27" y2="27" stroke="#c9933a" stroke-width="2"/>
+  <circle cx="0" cy="-40" r="4" fill="#c9933a"/>
+  <circle cx="0" cy="40" r="4" fill="#c9933a"/>
+  <circle cx="-40" cy="0" r="4" fill="#c9933a"/>
+  <circle cx="40" cy="0" r="4" fill="#c9933a"/>
+  <circle cx="-28" cy="-28" r="3.5" fill="#c9933a"/>
+  <circle cx="28" cy="28" r="3.5" fill="#c9933a"/>
+  <circle cx="28" cy="-28" r="3.5" fill="#c9933a"/>
+  <circle cx="-28" cy="28" r="3.5" fill="#c9933a"/>
+</g>
+</svg>
+</div>
+
+<div class="act-header act-two" id="act-two">
+<div class="act-number">ACT TWO</div>
+<p class="act-label">Act Two</p>
+<h2 class="act-title">The Redemption</h2>
+<p class="act-subtitle">The hero he always dreamed of being — and the price of mercy</p>
+<div class="act-rule"></div>
+</div>
+
+<div class="songs-grid">
+
+<div class="song-card" id="song-11">
+<div class="song-header" onclick="toggleSong('song-11')"><span class="song-number">11</span><span class="song-title">Tyrant's End</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Act Two opens with celebration in Patusan. Jim has defeated warlord Sherif Ali through military assault and corrupt Rajah Allang through political negotiation. Different villagers recount the specific events of both victories. This is Jim's moment of triumph — he has finally become the hero he always dreamed of being.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="section-head">Intro — Ensemble, celebration</span>The sword and the word
+Both wielded by one man
+Two enemies, two victories
+This was the execution of Jim's plan
+First the warrior on the hill
+Sherif Ali's broken will
+The stone fortress on the eastern ridge is rubble now
+Then the serpent in the compound who held us back for years
+Rajah Allang stripped of power and run out on a path of tears
+The coward exposed and crying has retreated in disgrace
+The tyrant has fallen hard — a bitter scar upon this place
+
+<span class="character">Dain Waris</span>I stood beside him on the hill below Ali's stone walls
+We'd tried to take that fortress before, watched our bravest fall
+But Jim studied the terrain for days, traced every path he found
+The route led through a ravine that enabled us to reach the higher ground
+At dawn we climbed in silence, split our forces in the mist
+Jim led the frontal charge while we circled from the east
+By afternoon the fortress was ours and Ali fled into the trees
+We stood victorious at the gates, Jim's steel resolve crushed our enemies
+
+<span class="character">Doramin</span>Then the matter of the Rajah remained
+That coward who bled our people, kept us divided and chained
+I have lived sixty years and seen many men speak of courage
+But Jim walked into the compound alone to deliver his message
+He faced down Allang's men, stared into Rajah's eyes
+Told him his corruption was finished, there would be no more lies
+The Rajah tried to bargain, tried to threaten, tried to bribe
+But Jim stood unmoved and Allang fled downriver with his tribe
+
+<span class="character">A Council Elder</span>I witnessed the negotiation that broke the Rajah's hold
+Jim gathered all the tribal leaders, united young and old
+He showed us how Allang had stolen from the trading stores
+Documented every bribe, every tax that bled us to our core
+Then Jim proposed a new council, power shared among our chiefs
+No single man would rule us, no more suffering under thieves
+
+<span class="section-head">Bridge — Doramin &amp; Dain Waris</span>Doramin: In all my years I have seen powerful men come and go
+Men who promised all these things but left us disappointed and so low
+Dain Waris: But this stranger with the haunted eyes has given us hope as sure as steel
+Not with words or promises but results — could it be joy that we now feel?
+Doramin: He has given us back our pride
+Dain Waris: He has given us back our home
+Both: He has earned his place among us, we are no longer alone
+
+<span class="section-head">Final Chorus — Full Ensemble</span>So raise your voices to the canopy above!
+Let the river carry forth our gratitude and love!
+Ali's domain is rubble and the Rajah fled downriver!
+Patusan united once again — a lasting peace has been delivered
+
+<span class="section-head">Outro</span>Tonight we feast, honor Jim and celebrate
+Our destiny, this turn of events, this simple twist of fate
+There is no one quite like him
+There is no one quite like Jim</div>
+</div>
+</div>
+
+<div class="song-card" id="song-12">
+<div class="song-header" onclick="toggleSong('song-12')"><span class="song-number">12</span><span class="song-title">Lord Jim</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">The community gathers for a sacred ceremony to formally bestow the title "Tuan Jim" (Lord Jim). Doramin presides. Jim struggles internally — he knows he doesn't deserve this honor because of the Patna. Jewel reassures him. Jim finally accepts the title, vowing to be the man they see rather than the coward he believes himself to be. This is Jim's peak.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="section-head">Intro — Ceremonial, Ensemble</span>We gather here beneath the stars
+To name the one who won our hearts
+To honor he who bears our scars
+The one who gave us a new start
+
+<span class="character">Doramin — Ritual Leader</span>Step forward, Jim, before your people
+Accept what you have earned through blood and deed, it's fair
+We have no crown of gold or jewels
+But we offer you our trust, our lives, our homes to share
+In the old ways of our fathers
+When a warrior proves his worth
+We give him a name that matters
+A title earned, not bought at birth
+
+<span class="section-head">Chorus — Ensemble</span>Lord Jim — Tuan Jim
+Protector of Patusan
+Lord Jim — Tuan Jim
+Stand and let us call you what you are
+Our shield, our sword, our guiding star
+
+<span class="character">Jim — Internal struggle, spoken-sung</span>How can I accept this honor
+When I know what I have been?
+They call me lord and protector
+But they don't know of the Patna's sin
+The pilgrims on the high seas
+I left them all behind
+And now these people offer me
+A name, a place, a home, a chance to shine
+
+<span class="character">Jewel — To Jim, intimate</span>I see the shadow in your eyes
+I see you cannot fully rest
+But you are here, you did not run
+You've conquered doubt, stood the test
+Whatever came before this moment
+Whatever weighs upon your soul
+You stood when others fell or failed
+You made our broken people whole
+
+<span class="section-head">Bridge — Ensemble, building ritual</span>We paint your face with sacred ash
+We drape your shoulders with our faith
+You served us well, you earned our trust
+Enshrined to us and this sacred place
+Indebted to you now, there must be way to repay
+Please make your home here among us
+Please do not leave us, you must stay
+You are Lord Jim — you are Tuan Jim
+
+<span class="character">Jim — Acceptance, sung</span>Then I will bear this weight
+Though I don't deserve the grace
+I will weather storms by your sides
+Stand with the people of this place
+If you call me Lord Jim
+Then I will try to be
+The man you see — Tuan Jim
+Not the dark regret inside of me
+
+<span class="section-head">Final Chorus — Full Ensemble</span>Lord Jim! Tuan Jim!
+Protector of Patusan!
+Rise now in your victory and your pain
+Through fire you were forged, through battle tested — you prevailed
+Diplomacy and mercy and the flame
+And in our history forevermore you shall be hailed
+Lord Jim!
+
+<span class="section-head">Outro — Doramin, Blessing</span>The river knows your name
+Jungle spirits in the wind
+The ancestors accept you now
+You are no longer just Jim
+Tuan Jim you are the one
+Patusan's anointed son</div>
+</div>
+</div>
+
+<div class="song-card" id="song-13">
+<div class="song-header" onclick="toggleSong('song-13')"><span class="song-number">13</span><span class="song-title">Jewel's Story</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Late at night, Jim discovers Jewel guarding his door, armed and vigilant. She finally tells him the story she's never fully shared: her mother's tragic past with Cornelius, the abuse she witnessed. Through their conversation, the fundamental difference between Jim and Jewel's worldviews emerges — he sees redemption in everyone, while she sees the danger hidden behind smiles. She warns him specifically about Cornelius.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="character">Jim</span>You stood at my door again last night, I saw you in the moonlight there
+With your blade across your knees, watching shadows everywhere
+Jewel, I've made peace with Rajah Allang, Doramin trusts me with his life
+Why do you guard me like I'm still in danger, like I'm riding a razor, my back to a knife
+
+<span class="character">Jewel</span>You want to know why I never sleep, why I watch the darkness for a threat?
+Sit down, Jim, let me tell you something — a story I haven't told you yet
+About my mother and the man she trusted, about the house where I grew tall
+About how she once was a strong young woman — had so much and lost it all
+
+<span class="section-head">Verse 1 — Jewel</span>My mother came from far away, searching something never found
+She was desperate and alone and far from home when Cornelius came around
+He promised her protection, promised her a place to build a life
+So she married him believing these words, became a proud trader's wife
+
+<span class="section-head">Verse 2 — Jewel</span>But Cornelius couldn't manage, he bungled the books and profits fell
+Stein's trust dissolved, respect was lost, he made my mother's life a living hell
+The failure and resentment, my mother bore the weight
+While I watched her grow smaller in that house, victim of his guilt and hate
+
+<span class="section-head">Verse 3</span>I watched her wither and dissipate like fog, witnessed horrible abuse
+A woman who believed in the goodness of men and of people
+Looked at her life and wondered: what's the use?
+So I taught myself to see clearly, to sharpen my wits and my blade
+I swore I would never be her, I would die before I slept in the bed she made
+
+<span class="section-head">Chorus — Jewel</span>So I guard your door because someone must
+I guard your door because love means standing watch
+I guard your door because trust erodes
+Even when you believe, even when you hope
+I guard your door because I know men lie
+But I've seen you Jim — and you'd rather die
+Than go back on your word — you're pure and true
+A man of honor through and through
+I guard your door because of this
+My love is lethal as a poison kiss
+Even though I couldn't do a thing to save my mother
+I'll fight for you like I would fight for no other
+I won't lose you to a trap or its springs
+I won't lose you like she lost every thing
+
+<span class="character">Jim</span>But Cornelius is just a bitter old man
+He keeps his distance, head down in the sand
+
+<span class="character">Jewel</span>He's still here, my love, and he still observes with resentful eyes each day
+You think because you're 'Tuan Jim,' because you rebuilt what he destroyed
+That he is going to go quietly away?
+His pride is damaged but he's not finished
+
+<span class="character">Jim</span>I've treated him with courtesy—
+
+<span class="character">Jewel</span>And that's exactly what worries me
+
+<span class="section-head">Verse 4 — Jewel</span>You see Patusan the way it should be, not the way it is at least
+You negotiate and reason, find diplomatic ways to peace
+But Cornelius and Rajah too — they stay broken, they never forgive
+
+<span class="section-head">Bridge — Jim &amp; Jewel, overlapping</span>Jim: You can't live like this forever / Seeing enemies in friends
+Jewel: You can't trust like this, not ever / It will lead you to your end
+Jim: I came here to build something / To be better than I was before
+Jewel: I grew up here and I know this jungle, its people to the core
+Jim: I have to believe in something / Or else what am I fighting for?
+Jewel: And I have to protect you, Jim / That's why I guard your door
+Both: We see the world so differently
+Jim: My love and trust won't ever stop
+Jewel: Even if it's the death of you
+
+<span class="section-head">Final Chorus — Jewel</span>So I guard your door and I'll keep guarding still
+This is what your love means to me
+I won't lose you to arrows or slings
+I won't lose you like she lost every thing
+
+<span class="section-head">Outro</span>Jim: We are both practical and sensible it's fact
+Jewel: So when I tell you something's amiss you better believe — I know, it's not an act
+When I stand at your door with my blade drawn, let me please, don't carry on
+Jim (quietly): Then guard it, Jewel. I won't stop you.
+Jewel: I know you won't. You never do.</div>
+</div>
+</div>
+
+<div class="song-card" id="song-14">
+<div class="song-header" onclick="toggleSong('song-14')"><span class="song-number">14</span><span class="song-title">Marlow's Return</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Captain Marlow returns upriver to witness Jim's transformation firsthand. He finds Jim living as "Lord Jim," respected and beloved. While Marlow is proud of Jim's apparent redemption, he senses fragility beneath the triumph. Jewel's fear haunts him. As Marlow departs, he wonders if a man can ever truly escape his demons. The moment of maximum hope before the final tragedy.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="section-head">Intro — Marlow, narrating</span>I traveled upriver through the fecund, endless green
+To witness what had become of Jim in this remote, forgotten dream
+The jungle parted like a curtain, Patusan emerged from mist
+And there was Jim — transformed, alive — a man I barely recognized
+
+<span class="section-head">Verse 1 — Marlow, observing Jim</span>He walked among the villagers with quiet dignity
+No longer was he haunted, no longer trying to flee
+They called him "Tuan" and hovered close as if to protect
+The broken man I'd sent here now commanded deep respect
+
+<span class="section-head">Verse 2 — the victories and devotion</span>They told me how he'd climbed the hill, cannons on his back
+How he'd outmaneuvered Sherif Ali — with his cunning and his tact
+And Rajah moved downriver — stripped of power and of pride
+Nevermore to terrorize the land with his violence and lies
+The trading post was thriving now, disputes were settled fair
+Tamb' Itam his loyal servant, silent and aware
+
+<span class="section-head">Verse 3 — Jim and Dain Waris</span>Jim's friendship with Dain, Doramin's son, noble and true
+Was a thing to behold, as they were captive of each other through and through
+They stood together like two brothers, warmly laughing, shaking hands
+The bond between them evident as they spoke of future plans
+
+<span class="section-head">Chorus — reprise of "One of Us"</span>He's one of us
+A sailor who was cut from different stone
+One of us
+Who found redemption after finding he was so alone
+He dove into the element that burns
+Just as old Stein said he must
+He's become what he envisioned
+Truly one of us
+
+<span class="section-head">Verse 4 — Meeting Jewel</span>Then Jewel found me by the river, darkness in her eyes
+She loved him with a fierceness that took me by surprise
+"You sent him here," she said to me, "You gifted him this place
+But white men leave — they always go — will he depart without a trace?"
+
+<span class="section-head">Verse 5 — Sensing her fear</span>I tried to reassure her but I saw her deeper dread
+She'd lost before, been left behind, the past lived in her head
+Cornelius, that vermin, slinking through the undergrowth
+But watching Jim with Dain Waris, secure in brotherhood
+I wondered: can a man escape himself, or does the guilt remain for good?
+
+<span class="section-head">Verse 6 — Jim's discomfort</span>But when I spoke to Jim alone, I felt him pull away
+As if my presence dragged the past back into the present day
+The ports, the Patna, all he'd fled — a stinging memory
+The shame he'd left behind him — the man he used to be
+He spoke of fondly of Dain Waris and of Jewel with deep devotion
+And he thanked me warmly for this chance — what Stein had put in motion
+
+<span class="section-head">Bridge — philosophical</span>The butterfly found his sun at last
+No longer spiraling in artificial light
+Immersed completely in the element
+That could either destroy or give him flight
+
+<span class="section-head">Final Chorus — bittersweet</span>He's one of us
+And here he's found the shore I hoped he'd find
+One of us
+Who built a life from wreckage left behind
+The jungle welcomed him with grace
+Gave him a chance to break the mirror
+Built his dreams from the shards of glass
+Worn smooth and so much clearer
+A iron soul once corroded by rust
+He's one of us
+
+<span class="section-head">Outro — Marlow</span>I left him there in Patusan, proud of his success
+A man who'd come to terms and moved on, nothing more, nothing less
+But as my boat pushed downriver and the jungle closed behind
+I couldn't shake the feeling that his peace was not the lasting kind
+Jewel's fear still haunted me — Jim wished for me to leave
+As if the past was threatening somehow the future he believed
+And I wondered as the jungle swallowed him from view
+Do the demons you shut out ever stop looking for you</div>
+</div>
+</div>
+
+<div class="song-card" id="song-15">
+<div class="song-header" onclick="toggleSong('song-15')"><span class="song-number">15</span><span class="song-title">Gentleman Brown</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Gentleman Brown and his band of pirates arrive expecting easy plunder. Instead they're ambushed and trapped on a knoll. Cornelius sneaks to Brown's position and poisons his mind — suggesting Jim is naive and can be manipulated through his belief in redemption. Brown formulates a plan to exploit Jim's guilt through psychological warfare rather than force of arms.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="section-head">Verse 1 — Brown &amp; his men, arriving</span>Six boats up the river, armed and ready for the prize
+A jungle trading village, ripe for looting by surprise
+We've heard the rumors here of successful native trade
+One white man amongst the natives, easy pickings to be made
+Brown: Just another conquest, boys, we'll be on our way by dawn
+Load your rifles, check your powder, let's move in and get this done
+
+<span class="section-head">Verse 2 — the attack goes wrong</span>But as we approached the stockade the silence should have warned
+The Bugis were armed and in position, fortified and battle-torn
+The first shot rang like thunder, then a dozen rifles more
+We scrambled back to cover — this wasn't what we bargained for
+
+<span class="section-head">Chorus — retreating</span>Fall back to the knoll, boys
+Get behind the rocks and trees
+We're outmanned, outgunned, and cornered
+Christ, we're caught like rats in a siege
+This was supposed to be simple
+Get supplies, plunder and take
+Now we're on this goddamn hillside
+Can't advance and no escape
+
+<span class="section-head">Verse 3 — Doramin &amp; Dain Waris</span>Doramin: These men are dangerous, violent and desperate too
+But Tuan Jim is in the interior, he must decide what we will do
+Dain Waris: Father, let me take them now while they're cornered and afraid
+Doramin: No, my son, I'd like Jim's counsel. We'll wait for his return.
+But take your men downriver, cut off their escape
+If they retreat, destroy them on the spot — guard the river until Jim comes back
+
+<span class="section-head">Verse 4 — Brown on the knoll</span>Three men dead, two more wounded, ammunition running low
+The river's blocked behind us, there's armed men below
+I've been in tight spots before but this one's got teeth
+We need a miracle or we'll be corpses — the outcome's looking bleak
+
+<span class="character">Cornelius — sneaking to the knoll</span>Psst — Mr. Brown, they call me Cornelius round here
+I thought you might appreciate some information whispered in your ear
+
+<span class="character">Brown</span>Who the hell are you and why aren't you down there with them?
+
+<span class="character">Cornelius</span>Because I hate their leader, Lord Jim, that's why, my friend
+You see he took everything from me — my livelihood, my place
+Treats me like a simple peasant, barely looks me in the face
+He's just a shadow of a man — he is a pebble, not a boulder
+Soft-hearted, fickle, and naive, you could defeat him and take over
+He plays at being noble, thinks he's better than most
+You're a clever man, Mr. Brown, you could twist him like a rope
+When he returns, you talk to him alone
+He'll listen — that's his weakness, he believes in second chances
+You play on that, sir, you feed that fantasy
+And when he's shown you mercy — when his guard has been let down
+You take this village, Gentleman B
+You take everything and cut him down
+
+<span class="character">Brown — calculating</span>You want him dead
+
+<span class="character">Cornelius</span>I want him gone. Dead works nicely too.
+He's a prick in my eye, I need him to vacate
+I want him removed, discarded — cut the head off of the snake
+
+<span class="section-head">Final Chorus — Brown, new strategy forming</span>So we wait on this knoll, boys
+Conserve what powder we have left
+We're outmanned, outgunned, and cornered
+But there might be a way through this yet
+A chance to snatch a victory from defeat
+I'll convince this Jim, once we meet
+We're not so different — he and I
+Talk gentleman to gentleman
+Outsiders in a far away land
+I just need to find a way — to exploit his devastation
+Any man in a jungle hideaway — must have some dark motivation</div>
+</div>
+</div>
+
+<div class="song-card" id="song-16">
+<div class="song-header" onclick="toggleSong('song-16')"><span class="song-number">16</span><span class="song-title">The Council</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Jim returns to find Brown's pirates trapped by Doramin's warriors. In a council of war, Doramin reports the tactical situation. Jewel urges Jim to destroy the pirates immediately. Jim, wanting to assess Brown personally before deciding, chooses to confront the pirate leader face-to-face — tragically ignoring Jewel's correct instincts.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="character">Jim — entering, to his council</span>I've returned to find armed pirates at our door
+What's the situation? Tell me what we know for sure
+How many men does Brown command, what's their position here?
+Doramin, report — I need the details clear
+
+<span class="character">Doramin</span>Lord Jim, we have them cornered on a knoll along the creek
+Perhaps fifteen men, desperate, tired and weak
+One boat, surrounded, no escape to the north
+And Dain downriver with his men blocking retreat
+If they try to flee toward the sea, Dain will cut them down
+They cannot move forward, they cannot turn around
+The pirates are at your mercy, the decision rests with you
+Please assess the situation — tell us what to do
+
+<span class="character">Jewel — urgent, fearful</span>Jim, you must destroy them, don't let them leave alive
+These are raiders, killers, a direct threat to our tribe
+I've seen what white men do — they can't be trusted, not at all
+Please, for Patusan, for me — see to it — they must fall
+
+<span class="character">Jim — considering, decisive</span>I'll speak with Brown myself, assess his measure face to face
+Doramin, keep your warriors ready, keep them in their place
+I want to see what kind of man would dare to raid this land
+Before I pass my judgment, I will try to understand</div>
+</div>
+</div>
+
+<div class="song-card" id="song-17">
+<div class="song-header" onclick="toggleSong('song-17')"><span class="song-number">17</span><span class="song-title">The Confrontation</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Jim confronts Brown at the creek. Brown quickly shifts from intimidation to psychological manipulation, probing until he discovers Jim's vulnerability — the guilt over the Patna. He creates a false equivalence between Jim's moment of panic and his own career of piracy. Jim, haunted by his past despite years of redemption, sees himself in Brown's words and grants safe passage — a catastrophic decision. Cornelius then emerges to guide Brown through a hidden creek to ambush Dain Waris.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="character">Jim — approaching, calling out</span>Mr. Brown, I am Jim, a few words, if we could
+You and your men arrived here — clearly up to no good
+You're surrounded, outmaneuvered, no escape route left to take
+So tell me why I shouldn't end you for your people's sake
+
+<span class="character">Brown — aside</span>This isn't what Cornelius promised, this man's no fool at all
+He's positioned forces perfectly, he's got us by the balls
+Look at him — so confident, calm and assured, with clear command
+I can't intimidate this man, need to change what I had planned
+
+<span class="character">Brown — calling back</span>Lord Jim, I won't insult you with lies about intentions pure
+We came seeking supplies, yes, but you've called us out for sure
+You've got us dead to rights, I'll admit that much is true
+The question now is simple: what will you do?
+
+<span class="character">Jim — firm</span>What I'll do depends on you and what you plan to say
+You're pirates, raiders — give me reason not to end you here today
+My people want your blood, they've earned that right through fear
+So speak carefully, Brown — your life depends on what I hear
+
+<span class="section-head">Brown — shifting tactics, probing</span>Fair enough, I'll speak plainly then, one white man to another
+Tell me something first though, Jim — what brings you here, so far from your mother
+Country, your people, your home across the sea?
+Why does a man like you cavort with natives in obscurity?
+
+<span class="character">Jim — stiffening, guarded</span>My reasons for being in Patusan are my own affair
+I've built something here through years of genuine care
+Don't deflect, Brown — your fate is what we're discussing now
+
+<span class="section-head">Brown — seeing the tremor, pressing</span>Forgive me, Jim, I meant no offense with my inquiry there
+I am here because I too was afraid once, I'll declare
+Made a choice in crisis that I cannot undo
+And I wonder, standing here, if that's familiar to you
+My men and I have been through so much
+I wouldn't leave them in a lurch
+I'm not the sort to cut and run
+And place myself upon a perch
+
+<span class="section-head">Brown — the full manipulation</span>You could kill us where we stand
+Cut us down like you have planned
+You've got every right, I won't deny
+But before you choose, ask yourself why
+You judge me now from your position of power and control
+But weren't you once the desperate one, a cold and lonely soul?
+To hide from judgment, condemnation, and maybe shame?
+Weren't you ever the cause of something bad? Shouldered the blame?
+I've made mistakes, God knows I have, done things I can't defend
+But who among us hasn't broken under pressure in the end?
+I'm not asking for your friendship or forgiveness here
+Just passage down the river, let us disappear
+We'll take our boat, we'll leave your people be
+But ask yourself this question — what gives you the right to judge?
+You're standing where you stand because someone gave you grace
+Someone saw past your failure, overlooked your disgrace
+So I'm asking: Let us go or shoot us dead now
+But don't pretend you're different — don't take that holy vow
+We're both men who failed when tested once before
+A chance to extricate past mistakes — that's all I'm asking
+
+<span class="character">Jim — struggling internally</span>You speak of fear, of choices made in desperate crisis
+Of jumping, leaving others... each word precisely slices
+Into wounds I thought had healed through years of redemption here
+But you're right — someone showed me mercy, made my path clear
+Stein gave me Patusan when I had nothing left
+Marlow believed in me when I was bereft
+
+<span class="character">Jim — deciding, conflicted</span>You'll have safe passage down the river to the sea
+Take your boat, your men, and leave Patusan, you're free
+My men will let you pass without engagement or attack
+But if you harm one soul, Brown, I'll kill you, that's a fact
+I'm not the fool you think I am, I see what's in your heart
+But I won't be the executioner, won't play that part
+You'll leave at dawn tomorrow, straight downriver to the coast
+
+<span class="character">Brown — false gratitude</span>You're a gentleman, Lord Jim, a man of honor true
+I give my word — no harm will come, that I promise you
+We'll slip away quiet, you'll never see our sail again
+Thank you for your mercy, for understanding... in the end
+
+<span class="character">Brown — aside, venomous</span>Soft fool in his pressed white suit, playing noble king
+Thinks his petty speeches and his mercy mean a goddamn thing
+He had me beaten, trapped completely, could have ended it clean
+Instead he'll let us pass because I played upon his guilt it seems
+We'll see just what mercy means
+
+<span class="character">Cornelius — emerging from shadows</span>There's another route, Brown, one only locals know
+A creek that cuts behind where Dain's men wait below
+I'll guide you there myself in the morning mists
+And you can surprise them there with bullets as a parting kiss</div>
+</div>
+</div>
+
+<div class="song-card" id="song-18">
+<div class="song-header" onclick="toggleSong('song-18')"><span class="song-number">18</span><span class="song-title">The Blood Runs Red</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">The village celebrates what they believe is a peaceful resolution. But Tamb' Itam staggers in with the news: Brown, guided by Cornelius through a hidden creek, ambushed Dain Waris's camp. Dain Waris — Jim's closest friend and Doramin's son — is dead. Jim's mercy has killed his brother, and the people's trust is shattered.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="section-head">Opening — Village Celebration, false hope</span>The pirates left at dawn, we watched their boat depart
+Victory is at hand, peace returns to every heart
+Prepare the feast, our sons are coming home
+No blood was spilled today, no mothers left to mourn
+
+<span class="section-head">Marlow/Narrator — ominous shift</span>But then from upriver came a figure through the trees
+Tamb' Itam, stumbling, panting, falling to his knees
+He found Jewel first and gasped out half-coherent words
+Of ambush in the morning mist, of slaughter she had heard
+
+<span class="character">Jewel — horror dawning</span>What are you saying? Speak clearly, tell me true
+Brown's men, the creek, what happened there — what did they do?
+
+<span class="character">Tamb' Itam — gasping, fragments</span>They didn't go downriver... came from another way
+Cornelius... the hidden creek... we never saw... the break of day
+The mist... the bullets... Dain Waris...
+
+<span class="character">Jewel</span>Go to Jim, now! Run!
+
+<span class="character">Tamb' Itam — bursting in</span>Tuan Jim! Tuan Jim!
+
+<span class="character">Jim — waking, dreading</span>Tamb' Itam, what's happened? Speak clearly, tell me plain
+Oh no. Is Dain... is Dain Waris slain?
+
+<span class="character">Tamb' Itam — testimony</span>Yes, Tuan. Dain has been killed
+They came down the hidden creek — Cornelius guided them
+I found that vermin running through the corpses
+I caught him, Tuan. I stabbed him twice, then drove my spear right through again
+
+<span class="character">Jim — processing the horror</span>Cornelius... Brown... an ambush... they lied
+My ring, my word, my promise and now my people have died
+
+<span class="character">Tamb' Itam — shaking his head</span>Tuan, I cannot go out now — and neither can you
+We cannot be amongst the people anymore
+You and your servant are not safe now
+They wait with knives beyond our door
+
+<span class="section-head">Chorus — Ensemble, grief and rage</span>The blood runs red along the creek
+The blood runs red where warriors sleep
+The morning mist was stained with death
+Our sons, our brothers, their final breath
+The blood runs red, the blood runs red
+Son and heir, Dain is dead
+Tuan Jim's mercy, Tuan Jim's trust
+Has turned our sons and brothers into white men's dust
+
+<span class="section-head">Verse — Marlow/Narrator</span>Loneliness closed in on Jim, a dark resignation
+He felt the people's deep sorrow, their pain and frustration
+Their confidence was shattered, their faith in him was gone
+He had failed them when it mattered, they couldn't carry on
+
+<span class="section-head">Dain's body brought home — sun setting</span>The sun was sinking low above the forest and the trees
+When Dain's body was carried through the village on the evening breeze
+They laid him in his father's compound underneath the open sky
+And all the women gathered there to wail and mourn and cry
+
+<span class="section-head">Women's Lament</span>Aiieee! Dain Waris, noble son
+Aiieee! Your life had just begun
+The white man's mercy brought us down
+Aiieee! Aiieee! Our sons now in hallowed ground
+
+<span class="section-head">Final Chorus — Full Ensemble</span>The blood runs red along the creek
+The blood runs red where warriors sleep
+The morning mist where bullets rained
+Sand and stone forever stained
+The blood runs red, the blood runs red
+Son and heir, Dain is dead
+Tuan Jim's mercy, white man's trust
+Has turned our sons and brothers into dust
+Aiieee! The blood runs red!
+Aiieee! Our sons are dead!
+
+<span class="section-head">Outro — Jim, alone</span>My oath, my word... my promise
+The token of my trust became the weapon set upon us
+I trusted Brown, sent him down and death came back instead
+My friend Dain believed in me
+And now my friend Dain is dead</div>
+</div>
+</div>
+
+<div class="song-card" id="song-19">
+<div class="song-header" onclick="toggleSong('song-19')"><span class="song-number">19</span><span class="song-title">Doramin's Grief</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Doramin sits alone with his son Dain's body. He discovers Jim's silver ring still on Dain's finger — the seal meant to ensure safe passage that instead led to his son's death. Doramin loves Jim like a son, but as chief he knows what must be done. This intimate lament humanizes the man who will ultimately kill Jim — a father's heartbreak forced to become a leader's duty.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="character">Doramin — to Dain's body</span>My son, Dain, my heir
+Now at peace, so still, the village in despair
+Just this morning you were strong
+Leading men, laughing, singing songs
+Now you're silent, and heavy, cold as stone
+And I am here, heart broken, and so alone
+
+Jim's silver ring... sadly tainted red
+Delivered to ensure
+Now a token of the dead
+
+<span class="section-head">Chorus</span>How does a father bury his son?
+How does an aging warrior mourn one so young?
+You were supposed to lead when I was gone
+Carry our people, and lead them to a new, bright dawn
+But now there's nothing left
+Just this ring, this blood, this theft
+My boy, and heir, my heart
+How does one stay strong while being torn apart?
+
+<span class="section-head">Verse 3 — The Impossible Burden</span>Jim is also like a son to me, it's true
+But I know what happens now
+And just what I must do
+Fate twisted and made into something worse
+All the good Jim brought to bear
+Dissolved into a wicked curse
+
+<span class="section-head">Outro — to Dain</span>Sleep now, Dain, beneath the trees
+I will complete the cycle though it brings me to my knees
+You were the best of us, noble, brave and true — you left your mark
+And I will carry this weight within my soul until I follow you into the dark</div>
+</div>
+</div>
+
+<div class="song-card" id="song-20">
+<div class="song-header" onclick="toggleSong('song-20')"><span class="song-number">20</span><span class="song-title">Jewel's Plea</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Jewel begs Jim to flee Patusan with her before Doramin's justice can be enacted. But Jim refuses — he's run before and it destroyed him. Their final scene is a desperate duet of opposing philosophies: her love versus his honor, her pragmatism versus his idealism. Jim leaves. Jewel is left alone, her love dying with his final breath.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="character">Jewel — urgent, desperate</span>Jim, we have to go, we have to leave tonight
+Pack what we can carry, disappear before the light
+I know the jungle paths, the rivers, places in the wood
+We'll find a place to hold up, somewhere safe, I know we could
+There is unrest in the village, whispers of your name
+They wish to close the circle, consecrate and seal the blame
+Please, my love, I'm begging you, don't let your pride decide
+Choose me, choose life, choose running — I won't ever leave your side
+
+<span class="character">Jim — quiet, resolute</span>Jewel, I can't run, I've run before and know the cost
+Every port I fled from, every harbor where I was lost
+I came to Patusan to finally stand and face
+The man I thought I could become if given one more chance, one saving grace
+If I run now, then what was all of this?
+The battles won, the belonging, every promise, every kiss
+I became Lord Jim here, loved and trusted, feared
+If I run from this, I'm just another white man who came then disappeared
+
+<span class="section-head">Chorus — Jewel, building desperation</span>I don't care about honor, I don't care how it looks
+I don't care about how this may be written down in books
+What good is all your glory if you're buried in the ground?
+Stay with me, forget the rest, we can escape and not be found
+
+<span class="section-head">Verse 3 — Jewel, pleading</span>We can build another life, we're young, we still have time
+Start over somewhere new, enjoy a lasting peace of mind
+I'll follow you to any shore, to any distant land
+Just don't walk into that compound, don't put your life into their hands
+You said you loved me, said I was your light
+Then prove it now by choosing me, by fleeing into the dark of night
+Honor is a word men use when they want to die with pride
+I'd rather have you living, broken, shamed, but still by my side
+
+<span class="section-head">Bridge — Jim, philosophical but firm</span>My love, you don't understand, and I wish you never had to know
+What it means to live with failure carved into your soul
+A permanent shadow
+I made a choice once when I was young and terrified
+I ran when I should have stayed, and everything inside me died
+I've run from port to port, changed names, hid my face from everyone
+But each place I went, the shame was there, a ghost I never could outrun
+If I run now, then Patusan was just another failure too
+Another place I fled from when the price of honor was due
+I'd rather die as Lord Jim, who stood and faced his end
+Than live in shame forever, running, broken, never whole again
+
+<span class="section-head">Chorus 2 — Jewel, desperate, angry</span>I don't care about your honor, I don't care what people say
+I care about tomorrow, waking up with you, another day
+You think you're choosing courage but you're choosing death, you fool
+Why does being right matter more than me? Why does honor have to be so cruel?
+
+<span class="section-head">Outro — Jim, to Jewel, tender</span>I love you, Jewel, more than I can say in words
+You gave me breath when I was drowning, made me feel like I deserved
+To be loved, to be whole, that I was someone good at last
+And running makes me a coward and I cannot wear that mask
+
+<span class="character">Jewel — broken, quiet</span>Choose your honor, choose your death.
+My love dies with your final breath.
+
+<span class="character">Jim — whispered</span>I'm sorry.</div>
+</div>
+</div>
+
+<div class="song-card" id="song-21">
+<div class="song-header" onclick="toggleSong('song-21')"><span class="song-number">21</span><span class="song-title">The Walk</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">Jim walks through Patusan village to face Doramin's justice. The villagers line his path in silence. Children who once called him "Tuan Jim" now stare. But Jim walks with dignity, head high, not running. This is his redemption — not escaping consequences but facing them. He arrives at Doramin's compound. Their eyes meet. A gunshot in darkness. Silence. Jim's journey is complete.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="section-head">Verse 1 — Jim, internal monologue</span>I'm walking through the village that once called me Lord
+Past the homes I protected, the peace we all restored
+Every step is heavy, every breath is thin
+But I'm not running this time, this time I'm walking in
+The faces in the shadows, some with tears, some with rage
+I brought them hope and glory, now I write the final page
+Dain died because of mercy that I extended
+Now I walk to meet my fate as it is intended
+
+<span class="section-head">Chorus — Jim, building strength</span>I am not afraid
+I am not running
+I choose to stay and face
+My destiny becoming
+The story of who I am, Lord Jim
+A hollow man walking forward
+Welcoming the end
+
+<span class="section-head">Verse 2 — Jim, remembering, bittersweet</span>I remember arriving, a broken, haunted man
+Doramin welcomed me, Stein's ring in my hand
+I remember the battles, cannon fire in the night
+And Jewel's determination to protect me with all her might
+I became someone here, someone I was proud to be
+The man I always hoped I was, finally whole and free
+But one choice, one moment, one act of simple grace
+Has brought me to this fateful walk, this final resting place
+
+<span class="section-head">Bridge — Jim, seeing Doramin ahead</span>Every port I fled to / Every harbor where I hid
+They are behind me now forever
+I'm not running, not like I did
+There's a reckoning at hand I understand the cost
+My error caused people to die — so many now are lost
+
+<span class="section-head">Final Chorus — powerful, resolved</span>I am not afraid
+I am not running
+I choose to stay and face
+My destiny becoming
+The story of who I am, Lord Jim
+A hollow man walking forward
+Welcoming the end
+This is who I am, I know my role
+Walking now to Doramin
+To pay the final toll
+
+<span class="section-head">Outro — spoken/sung quietly</span>I have arrived
+And I do not fear
+I stand before you now
+Doramin, I am here
+
+— — —
+
+BLACKOUT. A single gunshot in darkness. Silence.</div>
+</div>
+</div>
+
+<div class="song-card" id="song-22">
+<div class="song-header" onclick="toggleSong('song-22')"><span class="song-number">22</span><span class="song-title">Finale — Lord Jim</span><div class="song-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+<div class="song-body">
+<p class="synopsis-label">Synopsis</p>
+<p class="synopsis-text">After Jim's death, Marlow reflects on the meaning of his life and final choice. This intimate solo brings the epic journey full circle. Marlow grapples with the central question: was Jim's death redemption or surrender? His answer is complex — Jim was both failure and victor, coward and hero. But in choosing to stand rather than run, Jim found the part of himself he'd lost on the Patna. He became, finally, Lord Jim.</p>
+<p class="lyrics-label">Lyrics</p>
+<div class="lyrics"><span class="section-head">Verse 1 — Marlow, reflective</span>I watched him run from port to port across the eastern sea
+A man who couldn't shake the weight of what he used to be
+But in Patusan he found something he'd been searching for
+A fleeting chance to grasp redemption, a chance for something more
+He became Lord Jim, beloved, trusted, feared
+The man he always dreamed he was finally appeared
+But one choice, one moment, one act that seemed so right
+Brought darkness crashing down and extinguished the light
+
+<span class="section-head">Chorus 1 — building, complex emotion</span>Was he a failure or victorious in the end?
+Was his death redemption or surrender once again?
+I tell you now: he was both and he was neither
+He was one of us — a man, no more, no deeper
+He chose to stop when it was easier to run away
+He faced his destiny with open eyes and chose to stay
+And in that choice, however dark the cost
+He found himself — the part of him he thought he'd lost
+
+<span class="section-head">Verse 2 — Stein's Wisdom callback</span>As old Stein said: "In the destructive element immerse"
+A butterfly must seek out the light for better or for worse
+Jim was a romantic, always looking for the goodness in man
+This blinded him to Brown's intent and Dain's blood left on his hands
+To run with Jewel or face his demise, these were his choices
+The fire and flame had called him forth — those were the strongest voices
+
+<span class="section-head">Bridge — Sailor's Overture callback</span>For on the open sea, where the dreams run free
+A young man found his destiny
+In the tales passed down, our Lord Jim will be mentioned
+From the squalls that rise in the depths of blue
+The loves and lives cleaved by the ocean true
+Guilt and honor bearing down on his redemption
+He sailed toward his dream until the dream consumed him whole
+He paid the final price but I like to think found peace within his soul
+
+<span class="section-head">Final Chorus — "One of Us" callback</span>He was one of us
+A sailor born with honor in his bones
+One of us
+Though he's lost and gone, the final journey home
+The sea was never done with him, I knew it from the start
+There was redemption waiting in his tortured, aching heart
+He jumped, he fell, he ran, he found his way
+And then he stood and faced the end and didn't run away
+He was one of us
+One of us at least
+One of us
+Our Jim has found his peace</div>
+</div>
+</div>
+
+</div>
+
+<!-- COMPASS ROSE DIVIDER -->
+<div class="nautical-divider">
+<svg width="100%" viewBox="0 0 680 160" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Compass rose divider</title>
+<g transform="translate(340,80)">
+  <line x1="-300" y1="0" x2="-82" y2="0" stroke="#c9933a" stroke-width="0.8" opacity="0.5"/>
+  <line x1="82" y1="0" x2="300" y2="0" stroke="#c9933a" stroke-width="0.8" opacity="0.5"/>
+  <circle cx="0" cy="0" r="72" fill="none" stroke="#c9933a" stroke-width="3.5"/>
+  <polygon points="0,-70 -11,-26 0,-6 11,-26" fill="#c9933a"/>
+  <polygon points="0,70 -11,26 0,6 11,26" fill="#c9933a"/>
+  <polygon points="70,0 26,-11 6,0 26,11" fill="#c9933a"/>
+  <polygon points="-70,0 -26,-11 -6,0 -26,11" fill="#c9933a"/>
+  <polygon points="49,-49 24,-18 18,-24" fill="#c9933a" opacity="0.85"/>
+  <polygon points="49,-49 18,-24 36,-36" fill="#c9933a" opacity="0.85"/>
+  <polygon points="-49,-49 -24,-18 -18,-24" fill="#c9933a" opacity="0.85"/>
+  <polygon points="-49,-49 -18,-24 -36,-36" fill="#c9933a" opacity="0.85"/>
+  <polygon points="49,49 24,18 18,24" fill="#c9933a" opacity="0.85"/>
+  <polygon points="49,49 18,24 36,36" fill="#c9933a" opacity="0.85"/>
+  <polygon points="-49,49 -24,18 -18,24" fill="#c9933a" opacity="0.85"/>
+  <polygon points="-49,49 -18,24 -36,36" fill="#c9933a" opacity="0.85"/>
+  <path d="M11,-26 Q22,-22 26,-11" fill="none" stroke="#13110e" stroke-width="6"/>
+  <path d="M26,11 Q22,22 11,26" fill="none" stroke="#13110e" stroke-width="6"/>
+  <path d="M-11,26 Q-22,22 -26,11" fill="none" stroke="#13110e" stroke-width="6"/>
+  <path d="M-26,-11 Q-22,-22 -11,-26" fill="none" stroke="#13110e" stroke-width="6"/>
+  <circle cx="0" cy="0" r="10" fill="#c9933a"/>
+  <circle cx="0" cy="0" r="5" fill="#13110e"/>
+  <circle cx="0" cy="0" r="2" fill="#c9933a"/>
+</g>
+</svg>
+</div>
+
+<footer>
+<p class="footer-title">LORD JIM</p>
+<p class="footer-text">A Rock Opera in Two Acts<br>Based on the novel by Joseph Conrad</p>
+<div class="footer-rule"></div>
+<p class="footer-credit">Music &amp; Lyrics · Book · Conception</p>
+<div style="height:1rem;"></div>
+<p class="footer-credit" style="opacity:.4;">Epic · Maritime · Unforgettable</p>
+</footer>
+
+<script>
+const sf=document.getElementById('stars');
+for(let i=0;i<80;i++){const s=document.createElement('div');s.className='star';const z=Math.random()*2+.5;s.style.cssText=`width:${z}px;height:${z}px;top:${Math.random()*70}%;left:${Math.random()*100}%;--d:${3+Math.random()*5}s;--delay:${Math.random()*6}s;--op:${.3+Math.random()*.7};`;sf.appendChild(s);}
+function toggleSong(id){const c=document.getElementById(id);c.classList.toggle('open');if(c.classList.contains('open'))setTimeout(()=>c.scrollIntoView({behavior:'smooth',block:'nearest'}),50);}
+function openSong(id){const c=document.getElementById(id);c.classList.add('open');setTimeout(()=>c.scrollIntoView({behavior:'smooth',block:'start'}),100);}
+</script>
+</body>
+</html>
